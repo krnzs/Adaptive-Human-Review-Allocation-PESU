@@ -1,0 +1,5 @@
+budget,sequential_caught,static_caught,conf_caught,total_errors
+0.01,183,168,466,3427
+0.02,278,279,940,3427
+0.05,697,682,1506,3427
+0.1,1664,1434,2062,3427
