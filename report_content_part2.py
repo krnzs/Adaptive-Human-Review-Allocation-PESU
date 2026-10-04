@@ -258,17 +258,17 @@ def get_part2_content():
     # SECTION 14: CURRENT IMPLEMENTATION
     # =========================================================================
     content["14. Current Implementation"] = [
-        ("p", "Review-II mandates a minimum 50% meaningful project-specific implementation. To date, the project has achieved 96.4% completion across its functional modules, with 13 of 14 core functional requirements fully implemented and FR14 partially implemented as a local Streamlit demonstration.", None, False)
+        ("p", "Review-II mandates a minimum 50% meaningful project-specific implementation. To date, the project has achieved 13 of 14 requirements complete (93%) completion across its functional modules, with 13 of 14 core functional requirements fully implemented and FR14 partially implemented as a local Streamlit demonstration.", None, False)
     ]
 
     content["14.1 Current Completion Percentage"] = [
-        ("p", "The project completion status stands at 96.4% (13 of 14 functional requirements fully operational). This achievement substantially exceeds the university's 50% threshold for Review-II, supported by 26 executed Python scripts, complete experimental result CSVs, and an interactive Streamlit analytics dashboard.", "Verification of 96.4% Completion: ", False)
+        ("p", "The project completion status stands at 13 of 14 requirements complete (93%) (13 of 14 functional requirements fully operational). This achievement substantially exceeds the university's 50% threshold for Review-II, supported by 26 executed Python scripts, complete experimental result CSVs, and an interactive Streamlit analytics dashboard.", "Verification of 13 of 14 requirements complete (93%) Completion: ", False)
     ]
 
     content["14.2 Completed Modules"] = [
         ("p", "Figure 14.1 presents the modular implementation progress chart, illustrating the completion status across all 14 functional modules.", None, False),
         ("image", os.path.join(BASE_DIR, "diagrams", "v2_module_status.png"),
-         "Figure 14.1: Implementation Progress and Functional Verification Status (96.4% Complete).", Inches(6.0))
+         "Figure 14.1: Implementation Progress and Functional Verification Status (13 of 14 requirements complete (93%) Complete).", Inches(6.0))
     ]
 
     content["14.3 Modules Under Development"] = [

@@ -1165,7 +1165,11 @@ def build_deck():
         ("FR7", "Apply fixed review budgets (1%, 2%, 5%, 150%)", "IMPLEMENTED"),
         ("FR8", "Compare review strategies against ground truth", "IMPLEMENTED"),
         ("FR9", "Evaluate performance under shifted temporal data", "IMPLEMENTED"),
-        ("FR10", "Visualize experimental results on dashboard", "IMPLEMENTED")
+        ("FR10", "Visualize experimental results on dashboard", "IMPLEMENTED"),
+        ("FR11", "Historical Error Modeling", "IMPLEMENTED"),
+        ("FR12", "Shifted-Test Evaluation", "IMPLEMENTED"),
+        ("FR13", "Feedback-Adaptive Allocation", "IMPLEMENTED"),
+        ("FR14", "Analytics Dashboard", "Partial")
     ]
     for r_idx, (frid, frdesc, frstat) in enumerate(fr_rows, start=1):
         tbl19.cell(r_idx, 0).text = frid
