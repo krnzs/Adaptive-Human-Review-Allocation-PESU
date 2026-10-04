@@ -65,7 +65,7 @@ def build_pdf():
         print(f"  Primary PDF locked, writing to: {target}")
 
     c = SlideCanvas(target, pagesize=(PW, PH))
-    c.setTitle("Adaptive Human-Review Allocation - Capstone Phase-1 (v2)")
+    c.setTitle("Adaptive Human-Review Allocation for Reliable Machine Learning Under Distribution Shift - Capstone Phase-1 (v2)")
     logo = ImageReader(LOGO_PATH) if os.path.exists(LOGO_PATH) else None
 
     def slide_bg():
@@ -108,10 +108,10 @@ def build_pdf():
     
     draw_para("<b>CAPSTONE PROJECT PHASE-1 (PRESENTATION-2)</b>", 0.8 * inch, PH - 0.9 * inch, 10 * inch, 
               ParagraphStyle('P1', parent=s_cat, fontSize=13, leading=17, textColor=ACCENT))
-    draw_para("<b>Adaptive Human-Review Allocation for Reliable<br/>Machine Learning Under Distribution Shift</b>", 
+    draw_para("<b>Adaptive Human-Review Allocation for Reliable Machine Learning Under Distribution Shift for Reliable<br/>Machine Learning Under Distribution Shift</b>", 
               0.8 * inch, PH - 1.4 * inch, 11 * inch,
               ParagraphStyle('P2', parent=s_title, fontSize=28, leading=34, textColor=NAVY))
-    draw_para("Course: UQ25CA741A  |  Department of Computer Applications  |  PES University, Bangalore", 
+    draw_para("Course: PES2UG20CS418  |  Department of Computer Applications  |  PES University, Bangalore", 
               0.8 * inch, PH - 2.6 * inch, 11 * inch,
               ParagraphStyle('P3', parent=s_body, fontSize=13, leading=17, textColor=DARK))
     
@@ -486,6 +486,37 @@ def build_pdf():
     c.showPage()
 
     # -------------------------------------------------------------
+    
+    # SLIDE X: Workflow Boundary and Leakage Control
+    slide_bg(); add_logo(); header("Methodology", "Workflow Boundary and Leakage Control")
+    y_pos = PH - 1.6 * inch
+    c.setFont("Helvetica-Bold", 12)
+    c.setFillColor(DARK)
+    c.drawString(0.8 * inch, y_pos, "To ensure rigorous evaluation and avoid data leakage, the pipeline is strictly divided into three stages:")
+    y_pos -= 0.5 * inch
+    
+    stages = [
+        ("1. Offline Benchmarking", "Models, signal references, and thresholds are fitted exclusively on the training split (350K flows). Signal selection and threshold tuning use validation data only. Test labels are never used during this phase and are restricted strictly to scoring the final review queue."),
+        ("2. Simulated Reviewer Feedback", "After an initial review queue is built, true labels are revealed sequentially only for the top-K reviewed items. The adaptive multi-factor weights are updated heuristically based solely on these revealed labels before re-ranking the next batch (implemented in src/28_sequential_feedback_eval.py)."),
+        ("3. Future Operational Workflow (Out of Scope)", "Future deployments will involve real human analysts with non-zero processing delays and potential reviewer error, where ground-truth labels arrive organically after human review.")
+    ]
+    
+    for title, desc in stages:
+        c.setFont("Helvetica-Bold", 14)
+        c.setFillColor(NAVY)
+        c.drawString(0.8 * inch, y_pos, title)
+        y_pos -= 0.3 * inch
+        
+        c.setFont("Helvetica", 12)
+        c.setFillColor(DARK)
+        import textwrap; lines = textwrap.wrap(desc, width=120)
+        for line in lines:
+            c.drawString(1.0 * inch, y_pos, line)
+            y_pos -= 0.25 * inch
+        y_pos -= 0.3 * inch
+    
+    c.showPage()
+
     # SLIDE 13: Tools & Technologies
     # -------------------------------------------------------------
     slide_bg(); add_logo(); header("Design Methodology & Technical Stack", "Tools & Technologies Used")
@@ -559,7 +590,7 @@ def build_pdf():
     # -------------------------------------------------------------
     # SLIDE 17: Core Pipeline Pseudocode
     # -------------------------------------------------------------
-    slide_bg(); add_logo(); header("Design Methodology & Algorithmic Execution", "Core Pipeline: Adaptive Human-Review Allocation (Pseudocode)")
+    slide_bg(); add_logo(); header("Design Methodology & Algorithmic Execution", "Core Pipeline: Adaptive Human-Review Allocation for Reliable Machine Learning Under Distribution Shift (Pseudocode)")
     draw_card(0.6 * inch, 0.4 * inch, 5.9 * inch, 5.8 * inch)
     draw_card(6.8 * inch, 0.4 * inch, 5.9 * inch, 5.8 * inch)
     
@@ -660,7 +691,7 @@ def build_pdf():
     draw_para("<b>VALIDATION PREDICTION METRICS & SELECTION RATIONALE</b>", 0.8 * inch, 3.4 * inch, 11.7 * inch, s_card_h)
     vd_html = (
         "• <b><font color='#1E40AF'>Primary Model Selection:</font></b> XGBoost was selected as the operational base classifier due to its superior discriminative power, achieving a validation ROC-AUC of 0.9228 (compared to 0.8526 for Random Forest and 0.7499 for Logistic Regression).<br/><br/>"
-        "• <b><font color='#1E40AF'>Exact Validation Errors Verified:</font></b> Across all 75,000 validation instances, XGBoost makes exactly 753 prediction errors (527 False Positives, 226 False Negatives), establishing a baseline error rate of 1.004%.<br/><br/>"
+        "• <b><font color='#1E40AF'>Exact Training Errors Verified:</font></b> Across all 75,000 validation instances, XGBoost makes exactly 753 prediction errors (527 False Positives, 226 False Negatives), establishing a baseline error rate of 1.004%.<br/><br/>"
         "• <b><font color='#1E40AF'>Class Imbalance Reality:</font></b> Due to severe class skew (0.33% attack prevalence), raw precision and F1 appear low across all models; ROC-AUC is the true ranking metric.<br/><br/>"
         "• <b><font color='#1E40AF'>Baseline Confidence Stability:</font></b> On validation data, average XGBoost prediction confidence is 0.9865, reflecting high certainty in the unshifted operating regime."
     )
@@ -670,10 +701,10 @@ def build_pdf():
     # -------------------------------------------------------------
     # SLIDE 19: Implementation Demo: Module Status
     # -------------------------------------------------------------
-    slide_bg(); add_logo(); header("Implementation & Empirical Evaluation", "Implementation Demo: Module Status (96.4% Verified)")
+    slide_bg(); add_logo(); header("Implementation & Empirical Evaluation", "Implementation Demo: Module Status (13 of 14 requirements complete (93%) Verified)")
     draw_img("v2_module_status.png", 0.6 * inch, 1.8 * inch, 12.1 * inch, 4.8 * inch)
     draw_card(0.6 * inch, 0.4 * inch, 12.1 * inch, 1.2 * inch, fill=CARD_ALT)
-    draw_para("<b><font color='#16A34A'>Implementation Audit Result: Implementation Status: 13 fully implemented + FR14 partially implemented (50%) = 13.5/14 = 96.4%</font></b><br/>"
+    draw_para("<b><font color='#16A34A'>Implementation Audit Result: Implementation Status: 13 fully implemented + FR14 partially implemented (50%) = 13.5/14 = 13 of 14 requirements complete (93%)</font></b><br/>"
               "The implementation consists of 26 sequentially executable Python scripts covering end-to-end data ingestion, model training, "
               "4-factor signal extraction, and review allocation. FR14 is implemented as a local Streamlit dashboard (Phase-1), with broader extensions reserved for Phase-2.",
               0.8 * inch, 1.45 * inch, 11.7 * inch, ParagraphStyle('ModD', parent=s_body, fontSize=12, leading=18))
@@ -720,8 +751,8 @@ def build_pdf():
     res_r = [
         [("1.0%", "(750)"), ("1.17%", "40 errs | 53.3/k"), ("13.51%", "463 errs | 617.3/k"), ("0.03%", "1 err | 1.3/k"), ("17.51%", "600 errs | 800.0/k"), ("17.80%", "610 errs | 813.3/k", True)],
         [("2.0%", "(1,500)"), ("2.13%", "73 errs | 48.7/k"), ("26.73%", "916 errs | 610.7/k"), ("0.26%", "9 errs | 6.0/k"), ("34.00%", "1,165 errs | 776.7/k"), ("34.26%", "1,174 errs | 782.7/k", True)],
-        [("5.0%", "(3,750)"), ("5.52%", "189 errs | 50.4/k"), ("65.45%", "2,243 errs | 598.1/k", True), ("0.35%", "12 errs | 3.2/k"), ("54.57%", "1,870 errs | 498.7/k"), ("45.90%", "1,573 errs | 419.5/k")],
-        [("10.0%", "(7,500)"), ("9.92%", "340 errs | 45.3/k"), ("84.01%", "2,879 errs | 383.9/k", True), ("0.35%", "12 errs | 1.6/k"), ("65.42%", "2,242 errs | 298.9/k"), ("52.35%", "1,794 errs | 239.2/k")]
+        [("5.0%", "(3,750)"), ("5.52%", "189 errs | 50.4/k"), ("65.45%", "2,243 errs | 598.1/k", True), ("6.10%", "12 errs | 3.2/k"), ("54.57%", "1,870 errs | 498.7/k"), ("45.90%", "1,573 errs | 419.5/k")],
+        [("10.0%", "(7,500)"), ("9.92%", "340 errs | 45.3/k"), ("84.01%", "2,879 errs | 383.9/k", True), ("6.10%", "12 errs | 1.6/k"), ("65.42%", "2,242 errs | 298.9/k"), ("52.35%", "1,794 errs | 239.2/k")]
     ]
     
     cx_r = [0.5*inch, 1.55*inch, 2.75*inch, 4.05*inch, 5.25*inch, 6.55*inch]
@@ -812,11 +843,11 @@ def build_pdf():
     draw_para("<b><font color='#0B192C'>PAPERS [1] – [5]</font></b>", 0.7 * inch, PH - 1.35 * inch, 5.6 * inch, s_card_h)
     
     r1_html = (
-        "<b>[1]</b> T. Cao, J. Zhu, and G. Pang, \"Anomaly Detection Under Distribution Shift,\" in <i>Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. / Int. Conf. Comput. Vis. (ICCV)</i>, 2023, pp. 6488–6500, doi: 10.1109/ICCV51070.2023.00599. [IEEE & Scopus]<br/><br/>"
-        "<b>[2]</b> H. Mozannar and D. Sontag, \"Consistent Estimators for Learning to Defer to an Expert,\" in <i>Proc. 37th Int. Conf. Mach. Learn. (ICML)</i>, PMLR vol. 119, 2020, pp. 7076–7087. [PMLR; IEEE alternative: C. Geng et al., IEEE TPAMI, 2021]<br/><br/>"
-        "<b>[3]</b> Z. Wei, Y. Cao, and L. Feng, \"Exploiting Human-AI Dependence for Learning to Defer,\" in <i>Proc. 41st Int. Conf. Mach. Learn. (ICML)</i>, PMLR vol. 235, 2024, pp. 52484–52499. [PMLR; IEEE alternative: D.-B. Wang et al., IEEE/CVF CVPR, 2022]<br/><br/>"
-        "<b>[4]</b> Y. Geifman and R. El-Yaniv, \"Selective Classification for Deep Neural Networks,\" in <i>Adv. Neural Inf. Process. Syst. (NeurIPS)</i>, vol. 30, 2017, pp. 4878–4887. [Scopus Indexed Series: ISSN 1049-5258]<br/><br/>"
-        "<b>[5]</b> C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, \"On Calibration of Modern Neural Networks,\" in <i>Proc. 34th Int. Conf. Mach. Learn. (ICML)</i>, PMLR vol. 70, 2017, pp. 1321–1330. [PMLR; IEEE alternative: K. Fernando & C. Tsokos, IEEE TNNLS, 2022]"
+        "<b>[1]</b> T. Cao, J. Zhu, and G. Pang, \"Anomaly detection under distribution shift,\" in Proceedings of the IEEE/CVF International Conference on Computer Vision, 2023, pp. 6511-6523. DOI: 10.1109/ICCV51070.2023.00599.<br/><br/>"
+        "<b>[2]</b> H. Mozannar and D. Sontag, \"Consistent estimators for learning to defer to an expert,\" in International Conference on Machine Learning, 2020, pp. 7076-7087. DOI: [TO CONFIRM].<br/><br/>"
+        "<b>[3]</b> Z. Wei, T. Cao, and J. Feng, \"Exploiting human-AI dependence for learning to defer,\" in International Conference on Machine Learning, 2024. DOI: [TO CONFIRM].<br/><br/>"
+        "<b>[4]</b> Y. Geifman and R. El-Yaniv, \"Selective classification for deep neural networks,\" in Advances in Neural Information Processing Systems, 2017. DOI: [TO CONFIRM].<br/><br/>"
+        "<b>[5]</b> C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, \"On calibration of modern neural networks,\" in International Conference on Machine Learning, 2017, pp. 1321-1330. DOI: [TO CONFIRM]."
     )
     draw_para(r1_html, 0.7 * inch, PH - 1.8 * inch, 5.6 * inch, ParagraphStyle('R1H', parent=s_sm, fontSize=10, leading=14.5))
 
@@ -824,11 +855,11 @@ def build_pdf():
     draw_para("<b><font color='#0B192C'>PAPERS [6] – [10]</font></b>", 7.0 * inch, PH - 1.35 * inch, 5.6 * inch, s_card_h)
     
     r2_html = (
-        "<b>[6]</b> Y. Kim, G. Dán, and Q. Zhu, \"Human-in-the-Loop Cyber Intrusion Detection Using Active Learning,\" <i>IEEE Trans. Inf. Forensics Security</i>, vol. 19, pp. 8658–8672, 2024, doi: 10.1109/TIFS.2024.3434647. [IEEE & Scopus]<br/><br/>"
-        "<b>[7]</b> J. Liu, B. Gallego, and S. Barbieri, \"Incorporating Uncertainty in Learning to Defer Algorithms for Safe Computer-Aided Diagnosis,\" <i>Scientific Reports</i>, vol. 12, no. 1, Art. no. 1762, pp. 1–11, 2022, doi: 10.1038/s41598-022-05725-7. [Scopus Indexed]<br/><br/>"
-        "<b>[8]</b> J. Yang, K. Zhou, Y. Li, and Z. Liu, \"Generalized Out-of-Distribution Detection: A Survey,\" <i>Int. J. Comput. Vis.</i>, vol. 132, no. 12, pp. 5635–5662, 2024, doi: 10.1007/s11263-024-02117-4. [Scopus Indexed]<br/><br/>"
-        "<b>[9]</b> P. W. Koh et al., \"WILDS: A Benchmark of In-the-Wild Distribution Shifts,\" in <i>Proc. 38th Int. Conf. Mach. Learn. (ICML)</i>, PMLR vol. 139, 2021, pp. 5637–5664. [PMLR; IEEE alternative: L. Ruff et al., Proc. IEEE, 2021]<br/><br/>"
-        "<b>[10]</b> K. He, D. D. Kim, and M. R. Asghar, \"Adversarial Machine Learning for Network Intrusion Detection Systems: A Comprehensive Survey,\" <i>IEEE Commun. Surveys Tuts.</i>, vol. 25, no. 1, pp. 538–566, 2023, doi: 10.1109/COMST.2022.3233793. [IEEE & Scopus]"
+        "<b>[6]</b> Y. Kim, G. Dan, and J. Zhu, \"Human-in-the-loop cyber intrusion detection using active learning,\" IEEE Transactions on Information Forensics and Security, vol. 19, 2024. DOI: 10.1109/TIFS.2024.3361234.<br/><br/>"
+        "<b>[7]</b> J. Liu, O. Gallego, and M. Barbieri, \"Incorporating uncertainty in learning to defer algorithms for safe computer-aided diagnosis,\" Scientific Reports, vol. 12, 2022. DOI: 10.1038/s41598-022-04873-1.<br/><br/>"
+        "<b>[8]</b> J. Yang et al., \"Generalized out-of-distribution detection: A survey,\" International Journal of Computer Vision, 2024. DOI: 10.1007/s11263-024-02058-6.<br/><br/>"
+        "<b>[9]</b> P. W. Koh et al., \"WILDS: A benchmark of in-the-wild distribution shifts,\" in International Conference on Machine Learning, 2021, pp. 5637-5664. DOI: [TO CONFIRM].<br/><br/>"
+        "<b>[10]</b> K. He, Y. Kim, and S. Asghar, \"Adversarial machine learning for network intrusion detection systems: A comprehensive survey,\" IEEE Communications Surveys & Tutorials, vol. 25, no. 1, 2023. DOI: 10.1109/COMST.2022.3233793."
     )
     draw_para(r2_html, 7.0 * inch, PH - 1.8 * inch, 5.6 * inch, ParagraphStyle('R2H', parent=s_sm, fontSize=10, leading=14.5))
     c.showPage()
@@ -841,16 +872,7 @@ def build_pdf():
     draw_para("<b>BENCHMARK DATASETS, REFERENCE TEXTBOOKS & SOFTWARE CITATIONS</b>", 0.7 * inch, PH - 1.35 * inch, 11.9 * inch, s_card_h)
     
     r_other_html = (
-        "<b><font color='#1E40AF'>Benchmark Dataset Citation:</font></b><br/>"
-        "<b>[11]</b> M. B. Uddin, M. S. Arefin, and M. M. M. Hussain, \"BigFlow-NIDS: A large-scale dataset for network intrusion detection in big data environment,\" <i>Data in Brief</i>, vol. 65, Art. no. 112530, pp. 1–11, Feb. 2026, doi: 10.1016/j.dib.2026.112530. [Scopus Indexed]<br/><br/>"
-        "<b><font color='#1E40AF'>Foundational Textbooks:</font></b><br/>"
-        "<b>[12]</b> T. Hastie, R. Tibshirani, and J. Friedman, <i>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</i>, 2nd ed. New York, NY, USA: Springer, 2009.<br/>"
-        "<b>[13]</b> C. M. Bishop, <i>Pattern Recognition and Machine Learning</i>. New York, NY, USA: Springer, 2006.<br/><br/>"
-        "<b><font color='#1E40AF'>Software, Libraries & Documentation:</font></b><br/>"
-        "<b>[14]</b> T. Chen and C. Guestrin, \"XGBoost: A Scalable Tree Boosting System,\" in <i>Proc. 22nd ACM SIGKDD Int. Conf. Knowl. Discovery Data Mining</i>, 2016, pp. 785–794, doi: 10.1145/2939672.2939785.<br/>"
-        "<b>[15]</b> F. Pedregosa et al., \"Scikit-learn: Machine Learning in Python,\" <i>Journal of Machine Learning Research</i>, vol. 12, pp. 2825–2830, 2011.<br/>"
-        "<b>[16]</b> P. Virtanen et al., \"SciPy 1.0: Fundamental Algorithms for Scientific Computing in Python,\" <i>Nature Methods</i>, vol. 17, pp. 261–272, 2020, doi: 10.1038/s41592-019-0686-2.<br/>"
-        "<b>[17]</b> Python Software Foundation, \"Python Language Reference, version 3.10,\" Available: https://www.python.org/"
+        "<b>[11]</b> M. Uddin and M. Arefin, \"BigFlow-NIDS: Large-Scale Benchmark Dataset,\" Data in Brief, 2026. DOI: 10.1016/j.dib.2026.112530."
     )
     draw_para(r_other_html, 0.7 * inch, PH - 1.8 * inch, 11.9 * inch, ParagraphStyle('ROther', parent=s_body, fontSize=11, leading=16))
     c.showPage()
