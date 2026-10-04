@@ -103,13 +103,13 @@ def build_deck():
     p.font.color.rgb = ACCENT_BLUE
 
     p = tf1.add_paragraph()
-    p.text = "Adaptive Human-Review Allocation for Reliable\nMachine Learning Under Distribution Shift"
+    p.text = "Adaptive Human-Review Allocation for Reliable Machine Learning Under Distribution Shift for Reliable\nMachine Learning Under Distribution Shift"
     p.font.size = Pt(28)
     p.font.bold = True
     p.font.color.rgb = NAVY
 
     p = tf1.add_paragraph()
-    p.text = "Course Code: UQ25CA741A  |  Department of Computer Applications  |  PES University, Bangalore"
+    p.text = "Course Code: PES2UG20CS418  |  Department of Computer Applications  |  PES University, Bangalore"
     p.font.size = Pt(12.5)
     p.font.color.rgb = DARK_GRAY
 
@@ -148,7 +148,7 @@ def build_deck():
 
     s1.notes_slide.notes_text_frame.text = (
         "Good morning respected members of the panel and my guide, Prof. Dilip Kumar Maripuri. "
-        "I am presenting my Phase-1 Capstone Project Presentation-2 on 'Adaptive Human-Review Allocation "
+        "I am presenting my Phase-1 Capstone Project Presentation-2 on 'Adaptive Human-Review Allocation for Reliable Machine Learning Under Distribution Shift "
         "for Reliable Machine Learning Under Distribution Shift'. In this review, I will walk you through "
         "the core research motivation, our implemented experimental prototype on the BigFlow-NIDS benchmark, "
         "the empirical findings from our shifted-test evaluation, and our planned Phase-2 generalization."
