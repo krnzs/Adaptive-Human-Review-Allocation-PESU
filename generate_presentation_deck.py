@@ -366,7 +366,7 @@ def build_deck():
     papers_data = [
         ("BigFlow-NIDS: Large-Scale Benchmark Dataset", "Mendeley / Data in Brief", "Elsevier / Mendeley 2026", "66.9M flow derived benchmark. Used as our primary offline evaluation benchmark."),
         ("Consistent Estimators for Learning to Defer to an Expert", "H. Mozannar, D. Sontag", "ICML 2020 (PMLR 119)", "Theoretical formulation of learning to defer. Foundational basis for human-AI routing."),
-        ("Deep Learning to Defer with Multiple Experts", "D. Wei et al.", "ICML 2024 (PMLR 235)", "Extends deferral to multi-expert pools. Informs multi-tiered review routing."),
+        ("Consistent estimators for learning to defer to an expert", "D. Wei et al.", "ICML 2024 (PMLR 235)", "Extends deferral to multi-expert pools. Informs multi-tiered review routing."),
         ("Selective Classification for Deep Neural Networks", "Y. Geifman, R. El-Yaniv", "NeurIPS 2017", "Formulates risk-coverage trade-offs for confidence-based abstention baselines."),
         ("On Calibration of Modern Neural Networks", "C. Guo et al.", "ICML 2017 (PMLR 70)", "Demonstrates model miscalibration and overconfidence under distribution shift."),
         ("Conformal Prediction & Distribution-Free UQ", "A. Angelopoulos, S. Bates", "arXiv / Survey 2021", "Establishes finite-sample distribution-free uncertainty intervals."),
@@ -1544,7 +1544,7 @@ def build_deck():
         "[7] J. Yang et al., 'Generalized out-of-distribution detection: A survey,' IEEE Trans. Pattern Anal. Mach. Intell. (TPAMI), 2024.",
         "[8] P. W. Koh et al., 'WILDS: A benchmark of in-the-wild distribution shifts,' in Proc. 38th Int. Conf. Mach. Learn. (ICML), PMLR, vol. 139, 2021, pp. 5637–5664.",
         "[9] K. Lee, K. Lee, H. Lee, and J. Shin, 'A simple unified framework for detecting out-of-distribution samples and adversarial attacks,' in Adv. Neural Inf. Process. Syst. 31 (NeurIPS), 2018.",
-        "[10] M. Charusaie et al., 'Sample efficient learning to defer for auction-based crowdsourcing,' in Adv. Neural Inf. Process. Syst. 35 (NeurIPS), 2022."
+        "[10] M. Charusaie et al., 'Sample efficient learning of predictors that complement humans,' in Adv. Neural Inf. Process. Syst. 35 (NeurIPS), 2022."
     ]
     for r in refs:
         p = tf.add_paragraph()
