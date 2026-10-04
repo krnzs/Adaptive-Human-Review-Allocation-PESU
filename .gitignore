@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+results/*.csv
+results/*.png
+results/*.pdf
+models/*.pkl
+data/
+!results/extended_evaluation.md
+!LEAKAGE_AUDIT.md
+!CHANGES_NEEDED.md
