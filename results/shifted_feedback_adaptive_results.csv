@@ -1,0 +1,5 @@
+strategy,review_budget_percent,reviews,errors_caught,total_errors,error_capture_percent,errors_per_1000_reviews
+Feedback_Adaptive,1.0,750,610,3427,17.799824919754887,813.3333333333334
+Feedback_Adaptive,2.0,1500,1174,3427,34.25736796031514,782.6666666666666
+Feedback_Adaptive,5.0,3750,1573,3427,45.90020426028597,419.46666666666664
+Feedback_Adaptive,10.0,7500,1794,3427,52.348993288590606,239.2

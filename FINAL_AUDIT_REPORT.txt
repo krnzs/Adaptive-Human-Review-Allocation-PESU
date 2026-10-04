@@ -1,0 +1,30 @@
+FINAL SUBMISSION FORENSIC AUDIT REPORT
+======================================
+PROJECT: Adaptive Human-Review Allocation for Reliable Machine Learning Under Distribution Shift
+
+- Final Report Page Count: 32 pages (excluding instructions, down from 50+)
+- Final PPT Slide Count: 24 slides
+- Actual Implementation Status: 13.5 / 14 (96.4% equivalent). 13 fully implemented + FR14 partially implemented (50%).
+- Actual Dashboard Status: Implemented as a local Streamlit demonstration (Phase-I scope); live multi-dataset and web-portal functionality remain planned for Phase-II. Verified locally in dashboard/app.py.
+- Actual Script Count: 26 Python scripts explicitly verified in src/, ranging from 01_test_dataset.py to 26_verify_bigflow_sample.py.
+- Actual Dataset/Sample Sizes: BigFlow-NIDS experimental sample: 500,000 flows. Split chronologically into Train (350,000), Validation (75,000), and Shifted Test (75,000). Features used: 49 numerical.
+- Actual Result File Used: results/final_shifted_strategy_comparison.csv
+- Verified Reference Count: 16 total references in the bibliography.
+- Verified IEEE/Scopus Count: 12 verified IEEE/Scopus references (including BigFlow-NIDS), satisfying the minimum 10 requirement.
+
+LIST OF CORRECTIONS MADE:
+1. Removed all claims of 'real-time', 'live deployment', or 'human reviewers' and replaced them with 'offline shifted-test review', 'offline benchmark', and 'simulated review oracle'.
+2. Rewrote GenAI usage statement to clarify that no external commercial GenAI API is integrated into the runtime architecture.
+3. Completely standardized historical error wording to strictly use 'training-set mistakes' / 'training error neighborhoods' in alignment with src/14_historical_error_risk.py.
+4. Corrected O(N log N) wording to avoid mathematically false 'linear' claims.
+5. Softened claims like 'universally optimal' and 'complete failure' to accurately reflect the empirical crossover between the adaptive approach and confidence-only ranking at the 2% and 5% budgets.
+6. Unified the PPT and Report references. Slide 5 now accurately cites the Drift Monitoring IEEE/Scopus literature ([11], [12]).
+7. Updated bibliographic metadata to correct volume and page numbers (e.g. Cao et al. 6488-6500).
+8. Stripped 'Instructions to Students' and bracketed template placeholders from the final report structure.
+9. Compressed repetitive sections in the Word document to significantly lower the page count towards the 20-30 page target.
+10. Renamed all outputs to their _FINAL suffix versions to avoid version confusion.
+
+REMAINING LIMITATIONS:
+- The Streamlit Dashboard is strictly a local prototype; extending to a multi-user interactive web portal remains pending.
+- Post-Hoc probability calibration (Temperature Scaling) remains pending for Phase-II.
+- The feedback loop is a heuristic weight-adjustment rule, not a globally optimal learned model.

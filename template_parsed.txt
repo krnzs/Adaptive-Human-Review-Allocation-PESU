@@ -1,0 +1,250 @@
+P000: MCA CAPSTONE PROJECT 2025-27
+P001: PHASE I – REVIEW II / PRESENTATION-2 REPORT
+P002: PROJECT TITLE
+P003: [Enter Project Title]
+P004: Student Name : [Student Name]
+P005: SRN : [SRN]
+P006: Programme : Master of Computer Applications
+P007: Guide : Dilip Kumar Maripuri
+P008: Department of Computer Applications
+P009: PES University
+P010: Instructions to Students
+P011: Recommended report length: approximately 20–30 pages at Review-II stage.
+P012: The report must represent the actual current status of the project.
+P013: Minimum 50% meaningful project-specific implementation is expected.
+P014: Login functionality alone must not be treated as substantial implementation.
+P015: Minimum 10 relevant IEEE / Scopus-indexed research papers must be reviewed.
+P016: Use IEEE reference format.
+P017: Include clear diagrams, screenshots, tables and evidence wherever applicable.
+P018: Remove all instructional text enclosed in square brackets before final submission.
+P019: 1. Abstract
+P020: [Provide a concise summary of the problem, proposed solution, methodology, technologies and current implementation status.]
+P021: 2. Introduction
+P022: [Explain the project background and context.]
+P023: 2.1 Problem Scenario
+P024: [Enter details here]
+P025: 2.2 Proposed Solution
+P026: [Enter details here]
+P027: 2.3 Purpose
+P028: [Enter details here]
+P029: 2.4 Scope
+P030: [Enter details here]
+P031: 3. Review-I Recommendations and Action Taken
+P032: [Document the recommendations received during Review-I and explain the corresponding action taken.]
+P033: Sl No
+P034: Review-I Recommendation
+P035: Action Taken
+P036: Status
+P037: 1
+P038: 2
+P039: 3
+P040: 4. Detailed Literature Survey
+P041: [Review a minimum of 10 relevant IEEE / Scopus-indexed journal or conference papers. Papers should preferably be recent.]
+P042: For every research paper include:
+P043: Paper title
+P044: Authors
+P045: Publication year
+P046: Journal / Conference / Publisher
+P047: DOI / URL
+P048: Research problem
+P049: Method / Model / Approach
+P050: Dataset used, where applicable
+P051: Key findings
+P052: Limitations
+P053: Relevance to proposed project
+P054: 4.1 Research Paper 1
+P055: [Enter details here]
+P056: [Provide complete details and analysis of Research Paper 1]
+P057: 4.2 Research Paper 2
+P058: [Enter details here]
+P059: [Provide complete details and analysis of Research Paper 2]
+P060: 4.3 Research Paper 3
+P061: [Enter details here]
+P062: [Provide complete details and analysis of Research Paper 3]
+P063: 4.4 Research Paper 4
+P064: [Enter details here]
+P065: [Provide complete details and analysis of Research Paper 4]
+P066: 4.5 Research Paper 5
+P067: [Enter details here]
+P068: [Provide complete details and analysis of Research Paper 5]
+P069: 4.6 Research Paper 6
+P070: [Enter details here]
+P071: [Provide complete details and analysis of Research Paper 6]
+P072: 4.7 Research Paper 7
+P073: [Enter details here]
+P074: [Provide complete details and analysis of Research Paper 7]
+P075: 4.8 Research Paper 8
+P076: [Enter details here]
+P077: [Provide complete details and analysis of Research Paper 8]
+P078: 4.9 Research Paper 9
+P079: [Enter details here]
+P080: [Provide complete details and analysis of Research Paper 9]
+P081: 4.10 Research Paper 10
+P082: [Enter details here]
+P083: [Provide complete details and analysis of Research Paper 10]
+P084: 5. Literature Review Synthesis
+P085: [Do not merely repeat the individual paper summaries. Analyse the overall body of work.]
+P086: 5.1 Background Study
+P087: [Enter details here]
+P088: 5.2 Major Approaches Identified
+P089: [Enter details here]
+P090: 5.3 Major Findings
+P091: [Enter details here]
+P092: 5.4 Limitations of Existing Work
+P093: [Enter details here]
+P094: 5.5 Identified Research / Application Gap
+P095: [Enter details here]
+P096: 5.6 How the Proposed Project Addresses the Gap
+P097: [Enter details here]
+P098: 6. Comparative Study of Existing Applications / Systems
+P099: [Compare relevant existing applications, products, systems or research approaches with the proposed system.]
+P100: System / Application
+P101: Major Features
+P102: Technology / Approach
+P103: Limitations
+P104: Proposed Project Difference
+P105: 7. Proposed Contribution / Distinguishing Features
+P106: [Clearly explain what differentiates the proposed work from existing systems or research.]
+P107: 8. Tools and Technologies Used
+P108: [Mention versions wherever applicable.]
+P109: 8.1 Programming Languages
+P110: [Enter details here]
+P111: 8.2 Frameworks
+P112: [Enter details here]
+P113: 8.3 Libraries / Packages with Versions
+P114: [Enter details here]
+P115: 8.4 Database / Storage
+P116: [Enter details here]
+P117: 8.5 Development Tools
+P118: [Enter details here]
+P119: 8.6 Deployment Environment
+P120: [Enter details here]
+P121: 8.7 Hardware Requirements
+P122: [Enter details here]
+P123: 9. Functional Requirements
+P124: [Describe all project-specific functionality in sufficient detail.]
+P125: 9.1 Users / Actors
+P126: [Enter details here]
+P127: 9.2 Modules
+P128: [Enter details here]
+P129: 9.3 Functionalities
+P130: [Enter details here]
+P131: Module
+P132: User / Actor
+P133: Functionality
+P134: Description
+P135: Current Status
+P136: 10. Non-Functional Requirements
+P137: [Include only requirements relevant to the specific project.]
+P138: Performance
+P139: Security
+P140: Scalability
+P141: Reliability
+P142: Usability
+P143: Availability
+P144: Other project-specific requirements
+P145: 11. System / Software Design
+P146: [Include diagrams appropriate to the type of project.]
+P147: 11.1 Architecture Diagram
+P148: [Enter details here]
+P149: 11.2 Use-Case Diagram
+P150: [Enter details here]
+P151: 11.3 Activity / Sequence Diagram, where applicable
+P152: [Enter details here]
+P153: 11.4 Process Flow / Methodology
+P154: [Enter details here]
+P155: 11.5 ML / Data Processing Pipeline, where applicable
+P156: [Enter details here]
+P157: 11.6 DL Model Architecture, where applicable
+P158: [Enter details here]
+P159: 11.7 Network / IoT Block Diagram, where applicable
+P160: [Enter details here]
+P161: 12. Database / Data Design
+P162: [Include the appropriate representation based on the data storage technology.]
+P163: 12.1 ER Diagram
+P164: [Enter details here]
+P165: 12.2 Conceptual Schema
+P166: [Enter details here]
+P167: 12.3 NoSQL / Document Structure
+P168: [Enter details here]
+P169: 12.4 Dataset / Data Schema, where applicable
+P170: [Enter details here]
+P171: 13. Detailed Methodology
+P172: [Explain the complete technical workflow of the proposed system.]
+P173: 13.1 Overall Workflow
+P174: [Enter details here]
+P175: 13.2 Algorithms / Processing Steps
+P176: [Enter details here]
+P177: 13.3 Pseudocode
+P178: [Enter details here]
+P179: 14. Current Implementation
+P180: [Review-II requires minimum 50% meaningful project-specific implementation.]
+P181: 14.1 Current Completion Percentage
+P182: [Enter details here]
+P183: 14.2 Completed Modules
+P184: [Enter details here]
+P185: 14.3 Modules Under Development
+P186: [Enter details here]
+P187: 14.4 Pending Modules
+P188: [Enter details here]
+P189: 14.5 Implementation Screenshots
+P190: [Enter details here]
+P191: 14.6 Explanation of Demonstrable Functionality
+P192: [Enter details here]
+P193: 15. ML / DL / AI Methodology – Where Applicable
+P194: [Application-development students may mark this section Not Applicable.]
+P195: 15.1 Dataset and Source
+P196: [Enter details here]
+P197: 15.2 Dataset Characteristics
+P198: [Enter details here]
+P199: 15.3 Data Preprocessing
+P200: [Enter details here]
+P201: 15.4 Data Augmentation / Feature Engineering
+P202: [Enter details here]
+P203: 15.5 Train / Validation / Test Strategy
+P204: [Enter details here]
+P205: 15.6 Cross Validation Strategy
+P206: [Enter details here]
+P207: 15.7 Benchmark Models
+P208: [Enter details here]
+P209: 15.8 Proposed / Modified / Optimised Model
+P210: [Enter details here]
+P211: 15.9 Hyperparameter Optimisation
+P212: [Enter details here]
+P213: 15.10 Evaluation Metrics
+P214: [Enter details here]
+P215: 15.11 Preliminary Results
+P216: [Enter details here]
+P217: 15.12 Analysis of Results
+P218: [Enter details here]
+P219: 16. Testing / Evaluation
+P220: [Describe the testing or evaluation already completed and what remains to be done.]
+P221: 16.1 Functional Testing
+P222: [Enter details here]
+P223: 16.2 UI / UX Testing
+P224: [Enter details here]
+P225: 16.3 Model Evaluation, where applicable
+P226: [Enter details here]
+P227: 17. External GenAI / API Usage Disclosure
+P228: [External APIs such as OpenAI, Gemini or Claude must not constitute the core of the project.]
+P229: 17.1 API / Service Used
+P230: [Enter details here]
+P231: 17.2 Functionality Provided by API
+P232: [Enter details here]
+P233: 17.3 Approximate Percentage Contribution
+P234: [Enter details here]
+P235: 17.4 Core Functionality Independently Implemented
+P236: [Enter details here]
+P237: 18. Current Challenges
+P238: [Describe current technical, data, research or implementation challenges.]
+P239: 19. Work Planned Before Review-III
+P240: [Provide a clear plan of work and expected milestones before Review-III.]
+P241: Sl No
+P242: Planned Activity
+P243: Expected Outcome
+P244: Target Completion
+P245: 1
+P246: 2
+P247: 3
+P248: 20. References
+P249: [Provide all references using IEEE referencing format.]
