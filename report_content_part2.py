@@ -338,7 +338,7 @@ def get_part2_content():
 
     content["15.5 Train / Validation / Test Strategy"] = [
         ("p", "Data was partitioned chronologically (70% training, 15% validation, 15% shifted test):", "Temporal Partitioning: ", False),
-        ("bullet", "Training Split: First 350,000 chronological flows (Attack prevalence = 6.10%). Used for model training and baseline covariance fitting."),
+        ("bullet", "Training Split: First 350,000 chronological flows (Attack prevalence = 6.10%, 21,344 attacks). Used for model training and baseline covariance fitting."),
         ("bullet", "Validation Split: Next 75,000 chronological flows (Attack prevalence = 0.33%, 248 attacks, 753 model errors). Used for signal calibration and threshold tuning."),
         ("bullet", "Shifted Test Split: Final 75,000 chronological flows (Attack prevalence = 6.30%, 4,724 attacks, 3,427 model errors). Used strictly for out-of-sample evaluation under temporal shift.")
     ]

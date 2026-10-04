@@ -676,7 +676,7 @@ def build_deck():
     model_rows = [
         ("Logistic Regression", "0.9606", "0.0376", "0.4435", "0.0693", "0.7499"),
         ("Random Forest", "0.9801", "0.0708", "0.4153", "0.1210", "0.8526"),
-        ("XGBoost (Selected Primary)", "0.9899", "0.0401", "0.0887", "0.0552", "0.9228")
+        ("XGBoost (Selected Primary)", "0.9900", "0.0401", "0.0887", "0.0552", "0.9228")
     ]
     for r_idx, r_data in enumerate(model_rows, start=1):
         for c_idx, val in enumerate(r_data):
@@ -876,7 +876,7 @@ def build_deck():
             p.font.color.rgb = WHITE
 
     s14_rows = [
-        ("Attack Prevalence", "≈ 0.33% (248 attacks)", "≈ 6.350% (4,725 attacks)", "Substantial surge in malicious flow volume"),
+        ("Attack Prevalence", "≈ 0.33% (248 attacks)", "≈ 6.350% (4,724 attacks)", "Substantial surge in malicious flow volume"),
         ("Model Prediction Errors", "753 errors", "3,427 errors", "4.55× increase in classification mistakes"),
         ("Model Error Rate", "≈ 1.050%", "≈ 4.57%", "Higher operational error rate in later period"),
         ("Average Model Confidence", "≈ 98.65%", "≈ 96.82%", "Model remains overconfident despite error surge")
