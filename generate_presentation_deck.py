@@ -767,7 +767,30 @@ def build_deck():
         p.font.color.rgb = DARK_GRAY
 
     # ==========================================
-    # SLIDE 13: SIMULATED HUMAN REVIEW & STRATEGIES
+    
+    # ==========================================
+    # SLIDE X: Workflow Boundary and Leakage Control
+    s_leak = prs.slides.add_slide(blank_layout)
+    add_base_decorations(s_leak, "Workflow Boundary and Leakage Control", "Methodology", 
+                         "To ensure rigorous evaluation and avoid data leakage, the pipeline is strictly divided into three stages.")
+    
+    add_paragraph(s_leak, Inches(0.8), Inches(2.0), Inches(11.7), Inches(1.0),
+        "1. Offline Benchmarking\n"
+        "Models, signal references, and thresholds are fitted exclusively on the training split (350K flows). "
+        "Signal selection and threshold tuning use validation data only. Test labels are never used during this phase "
+        "and are restricted strictly to scoring the final review queue.", size=22, bold_first_line=True)
+    
+    add_paragraph(s_leak, Inches(0.8), Inches(3.5), Inches(11.7), Inches(1.0),
+        "2. Simulated Reviewer Feedback\n"
+        "After an initial review queue is built, true labels are revealed sequentially only for the top-K reviewed items. "
+        "The adaptive multi-factor weights are updated heuristically based solely on these revealed labels before re-ranking the next batch "
+        "(implemented in src/28_sequential_feedback_eval.py).", size=22, bold_first_line=True)
+        
+    add_paragraph(s_leak, Inches(0.8), Inches(5.0), Inches(11.7), Inches(1.0),
+        "3. Future Operational Workflow (Out of Scope)\n"
+        "Future deployments will involve real human analysts with non-zero processing delays and potential reviewer error, "
+        "where ground-truth labels arrive organically after human review.", size=22, bold_first_line=True)
+\n    # SLIDE 13: SIMULATED HUMAN REVIEW & STRATEGIES
     # ==========================================
     s13 = prs.slides.add_slide(blank_layout)
     notes_s13 = (
