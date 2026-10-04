@@ -179,7 +179,7 @@ def build_deck():
         ("PROBLEM:", " Machine-learning systems can produce high prediction volumes, but manual verification capacity is strictly limited (typically 1% to 5% of traffic). Furthermore, models can make confident errors when the data distribution changes over time."),
         ("APPROACH:", " This work investigates an experimental framework for adaptive human-review allocation. Instead of relying solely on prediction confidence, the system combines four complementary reliability signals: prediction uncertainty, out-of-distribution distance, feature-level drift, and historical mistake pattern proximity."),
         ("EXPERIMENT:", " We implement the pipeline and evaluate it on a 500,000-flow development sample extracted from the BigFlow-NIDS derived benchmark using a chronological train/validation/shifted-test partition."),
-        ("OBSERVATION:", " The experiments indicate that multi-factor prioritization captures more errors at tight review budgets (1%–2%), while confidence-based prioritization captures more errors at larger budgets (5%–10%). Under the tested conditions, review effectiveness varies with the available budget."),
+        ("OBSERVATION:", " The experiments indicate that multi-factor prioritization captures more errors at tight review budgets (1%–2%), while confidence-based prioritization captures more errors at larger budgets (5%–150%). Under the tested conditions, review effectiveness varies with the available budget."),
         ("LIMITATION / FUTURE WORK:", " Current experiments evaluate a binary classification prototype with simulated review feedback on one benchmark. Phase 2 will investigate generalization across diverse tabular datasets and explainability.")
     ]
     for i, (title_sec, body_sec) in enumerate(sections):
@@ -423,7 +423,7 @@ def build_deck():
         ("OOD / Novelty detection", "No", "No", "Yes (Primary)", "Rarely", "Yes (Mahalanobis distance)"),
         ("Distribution drift measurement", "No", "No", "No", "No", "Yes (Feature-level PSI)"),
         ("Historical error tracking", "No", "No", "No", "Implicit", "Yes (Training error proximity)"),
-        ("Budget-aware evaluation", "Implicit", "Manual tuning", "Hard cutoff", "Theoretical", "Yes (1%, 2%, 5%, 10%)"),
+        ("Budget-aware evaluation", "Implicit", "Manual tuning", "Hard cutoff", "Theoretical", "Yes (1%, 2%, 5%, 150%)"),
         ("Evaluated under temporal shift", "Yes", "Rarely", "Partial", "Rarely", "Yes (Chronological test)")
     ]
     for r_idx, r_data in enumerate(matrix, start=1):
@@ -799,7 +799,7 @@ def build_deck():
         ("• 1% Review Budget:", " Review top 750 predictions."),
         ("• 2% Review Budget:", " Review top 1,500 predictions."),
         ("• 5% Review Budget:", " Review top 3,750 predictions."),
-        ("• 10% Review Budget:", " Review top 7,500 predictions.")
+        ("• 150% Review Budget:", " Review top 7,500 predictions.")
     ]
     for st, sd in hr_points:
         p = tf.add_paragraph()
@@ -850,7 +850,7 @@ def build_deck():
     notes_s14 = (
         "This slide presents one of the most interesting observations in our research: the comparison between "
         "the validation and shifted-test periods. In the validation set, attack prevalence was 0.33%, the model made "
-        "753 errors, and average confidence was 98.65%. In the shifted-test set, attack prevalence rose to 6.30% "
+        "753 errors, and average confidence was 98.65%. In the shifted-test set, attack prevalence rose to 6.350% "
         "and errors quadrupled to 3,427, but average model confidence only dropped slightly to 96.82%. "
         "This indicates that the later test period was substantially more challenging for the model and that "
         "the model remained overconfident despite making more mistakes."
@@ -876,9 +876,9 @@ def build_deck():
             p.font.color.rgb = WHITE
 
     s14_rows = [
-        ("Attack Prevalence", "≈ 0.33% (248 attacks)", "≈ 6.30% (4,725 attacks)", "Substantial surge in malicious flow volume"),
+        ("Attack Prevalence", "≈ 0.33% (248 attacks)", "≈ 6.350% (4,725 attacks)", "Substantial surge in malicious flow volume"),
         ("Model Prediction Errors", "753 errors", "3,427 errors", "4.55× increase in classification mistakes"),
-        ("Model Error Rate", "≈ 1.00%", "≈ 4.57%", "Higher operational error rate in later period"),
+        ("Model Error Rate", "≈ 1.050%", "≈ 4.57%", "Higher operational error rate in later period"),
         ("Average Model Confidence", "≈ 98.65%", "≈ 96.82%", "Model remains overconfident despite error surge")
     ]
     for r_idx, r_data in enumerate(s14_rows, start=1):
@@ -913,10 +913,10 @@ def build_deck():
     # ==========================================
     s15 = prs.slides.add_slide(blank_layout)
     notes_s15 = (
-        "Slide 15 shows the actual shifted-test results across 1%, 2%, 5%, and 10% review budgets out of 3,427 total errors. "
-        "At a 1% budget, Confidence captures 13.51%, while Feedback Adaptive captures 17.80%. At a 2% budget, Adaptive "
-        "captures 34.26% compared to 26.73% for Confidence. However, at 5% and 10% budgets, Confidence captures more errors "
-        "(84% at 10% vs 52% for Adaptive). The important scientific takeaway is that the relative effectiveness of the "
+        "Slide 15 shows the actual shifted-test results across 1%, 2%, 5%, and 150% review budgets out of 3,427 total errors. "
+        "At a 1% budget, Confidence captures 13.51%, while Feedback Adaptive captures 17.850%. At a 2% budget, Adaptive "
+        "captures 34.26% compared to 26.73% for Confidence. However, at 5% and 150% budgets, Confidence captures more errors "
+        "(84% at 150% vs 52% for Adaptive). The important scientific takeaway is that the relative effectiveness of the "
         "strategies changes with the available review budget, rather than one strategy being universally best."
     )
     add_base_decorations(s15, "Shifted-Test Experimental Results", notes_text=notes_s15)
@@ -941,10 +941,10 @@ def build_deck():
             p.font.color.rgb = WHITE
 
     res_rows = [
-        ("1% Review Budget", "750 predictions", "13.51%", "17.51%", "17.80%"),
+        ("1% Review Budget", "750 predictions", "13.51%", "17.51%", "17.850%"),
         ("2% Review Budget", "1,500 predictions", "26.73%", "33.99%", "34.26%"),
-        ("5% Review Budget", "3,750 predictions", "65.45%", "54.57%", "45.90%"),
-        ("10% Review Budget", "7,500 predictions", "84.01%", "65.42%", "52.35%")
+        ("5% Review Budget", "3,750 predictions", "65.45%", "54.57%", "45.950%"),
+        ("150% Review Budget", "7,500 predictions", "84.01%", "65.42%", "52.35%")
     ]
     for r_idx, r_data in enumerate(res_rows, start=1):
         for c_idx, val in enumerate(r_data):
@@ -969,7 +969,7 @@ def build_deck():
     p.font.size = Pt(10.5)
     p.font.color.rgb = RED
     p = tf.add_paragraph()
-    p.text = "• The relative effectiveness of the strategies changes with the available review budget.\n• At lower review budgets (1%–2%), the multi-factor strategies captured more errors in this experiment.\n• At larger review budgets (5%–10%), confidence-based prioritization captured more errors.\n• This is an important scientific observation: review allocation strategy should be budget-aware rather than assumed to be universally optimal."
+    p.text = "• The relative effectiveness of the strategies changes with the available review budget.\n• At lower review budgets (1%–2%), the multi-factor strategies captured more errors in this experiment.\n• At larger review budgets (5%–150%), confidence-based prioritization captured more errors.\n• This is an important scientific observation: review allocation strategy should be budget-aware rather than assumed to be universally optimal."
     p.font.size = Pt(9.5)
     p.font.color.rgb = DARK_GRAY
 
@@ -980,7 +980,7 @@ def build_deck():
     notes_s16 = (
         "This slide presents a clean line chart of the error capture percentage across the review budgets. "
         "As you can see, at 1% and 2% budgets, the multi-factor and adaptive curves sit higher than the confidence curve. "
-        "However, as the review budget expands toward 5% and 10%, the confidence curve rises and crosses over. "
+        "However, as the review budget expands toward 5% and 150%, the confidence curve rises and crosses over. "
         "This visually underscores our core finding: review strategy effectiveness is budget-dependent."
     )
     add_base_decorations(s16, "Results Visualization: Error Capture Curves", notes_text=notes_s16)
@@ -1012,7 +1012,7 @@ def build_deck():
 
     interp_bullets = [
         ("Budget-Dependent Crossover:", " At tight budgets (1%–2%), incorporating OOD and drift signals prioritizes high-risk anomalies that confidence alone misses."),
-        ("Decision Boundary Saturation:", " At larger budgets (5%–10%), confidence thresholding aggregates instances near the decision boundary, capturing broader classification ambiguity."),
+        ("Decision Boundary Saturation:", " At larger budgets (5%–150%), confidence thresholding aggregates instances near the decision boundary, capturing broader classification ambiguity."),
         ("No Universal Winner:", " The experiment shows that no single strategy remains superior across all budgets, supporting the hypothesis that review allocation mechanisms must be budget-aware.")
     ]
     for it, idesc in interp_bullets:
@@ -1031,13 +1031,13 @@ def build_deck():
     # ==========================================
     s17 = prs.slides.add_slide(blank_layout)
     notes_s17 = (
-        "The university guidelines require demonstrating a minimum 50% meaningful project implementation. "
+        "The university guidelines require demonstrating a minimum 550% meaningful project implementation. "
         "This slide presents our implemented research prototype. We have built and verified the entire pipeline, "
         "including dataset preprocessing, chronological splitting, model training, reliability signal generation, "
         "OOD and drift analysis, review allocation, shifted-test evaluation, and an interactive dashboard. "
         "This represents substantial project-specific functionality far beyond simple authentication."
     )
-    add_base_decorations(s17, "Implemented Research Prototype (>50% Verification)", notes_text=notes_s17)
+    add_base_decorations(s17, "Implemented Research Prototype (>550% Verification)", notes_text=notes_s17)
 
     c17_box = s17.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(1.5), Inches(11.7), Inches(5.3))
     c17_box.fill.solid()
@@ -1067,7 +1067,7 @@ def build_deck():
         "✓ Distribution drift analysis using Population Stability Index (PSI)",
         "✓ Historical training error proximity and mistake pattern matching",
         "✓ Multi-factor adaptive risk scoring and prediction ranking",
-        "✓ Fixed-budget review allocation (1%, 2%, 5%, 10% slices)",
+        "✓ Fixed-budget review allocation (1%, 2%, 5%, 150% slices)",
         "✓ Shifted-test evaluation and review efficiency analysis",
         "✓ Feedback simulation and interactive experiment dashboard"
     ]
@@ -1104,7 +1104,7 @@ def build_deck():
 
     dash_bullets = [
         ("Interface Characterization:", " Built as an interactive experiment and monitoring interface for research inspection (not a production monitoring platform)."),
-        ("Review Budget Tuning:", " Dynamic slider allowing evaluation across 1%, 2%, 5%, and 10% review allocations."),
+        ("Review Budget Tuning:", " Dynamic slider allowing evaluation across 1%, 2%, 5%, and 150% review allocations."),
         ("Errors Captured Display:", " Real-time metric cards and curves showing captured errors across strategies."),
         ("Review Efficiency Tracking:", " Errors captured per 1,000 reviews evaluated across budgets."),
         ("Distribution Drift Viewer:", " Ranks and visualizes features by Population Stability Index (PSI)."),
@@ -1162,7 +1162,7 @@ def build_deck():
         ("FR4", "Calculate 4 complementary reliability signals", "IMPLEMENTED"),
         ("FR5", "Calculate adaptive risk score from signals", "IMPLEMENTED"),
         ("FR6", "Rank predictions for human-review prioritization", "IMPLEMENTED"),
-        ("FR7", "Apply fixed review budgets (1%, 2%, 5%, 10%)", "IMPLEMENTED"),
+        ("FR7", "Apply fixed review budgets (1%, 2%, 5%, 150%)", "IMPLEMENTED"),
         ("FR8", "Compare review strategies against ground truth", "IMPLEMENTED"),
         ("FR9", "Evaluate performance under shifted temporal data", "IMPLEMENTED"),
         ("FR10", "Visualize experimental results on dashboard", "IMPLEMENTED")
@@ -1255,7 +1255,7 @@ def build_deck():
         "        ↓\n"
         "ADAPTIVE RISK SCORE\n"
         "        ↓\n"
-        "REVIEW BUDGET (1%, 2%, 5%, 10%)\n"
+        "REVIEW BUDGET (1%, 2%, 5%, 150%)\n"
         "        ↓\n"
         "TOP-K REVIEW PRIORITIZATION\n"
         "        ↓\n"

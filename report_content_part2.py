@@ -197,7 +197,7 @@ def get_part2_content():
     content["13.2 Algorithms / Processing Steps"] = [
         ("p", "The four reliability signals are mathematically formulated as follows:", "Mathematical Formulation: ", False),
         ("bullet", "Signal 1 — Prediction Uncertainty: Quantifies classifier ambiguity from model posteriors: U_i = 1 - max(P(y=1|x_i), 1 - P(y=1|x_i)). Renders U_i in [0, 0.5], where U_i = 0.5 denotes maximum ambiguity (P = 0.5) and U_i = 0 denotes complete certainty.", "1. Prediction Uncertainty: "),
-        ("bullet", "Signal 2 — Regularized Mahalanobis Distance: Measures geometric feature divergence: D_M^2(x_i) = (x_i - mu)^T (Sigma + lambda * I)^(-1) (x_i - mu), with Tikhonov regularization lambda = 1e-4. Raw distances are converted to empirical percentile ranks D_M,i in [0, 1] relative to validation distance distributions.", "2. Mahalanobis OOD Distance: "),
+        ("bullet", "Signal 2 — Regularized Mahalanobis Distance: Measures geometric feature divergence: D_M^2(x_i) = (x_i - mu)^T (Sigma + lambda * I)^(-1) (x_i - mu), with Tikhonov regularization eps = 1e-6. Raw distances are converted to empirical percentile ranks D_M,i in [0, 1] relative to validation distance distributions.", "2. Mahalanobis OOD Distance: "),
         ("bullet", "Signal 3 — Batch Distribution Drift (PSI): Monitors macroscopic population drift across 10 quantile bins: PSI_j = sum_{k=1}^{10} (A_{j,k} - E_{j,k}) * ln(A_{j,k} / E_{j,k}). Per-instance drift vulnerability S_i is computed by weighting normalized feature drift by the absolute z-score deviation of instance features.", "3. Feature Drift Magnitude: "),
         ("bullet", "Signal 4 — Historical Mistake Proximity: Maps x_i into validation mistake neighborhoods: H_i = ErrorRate(Bin(x_{i,j*})), where j* represents the feature with the highest PSI drift. Captures whether an incoming sample falls into feature regions prone to classifier errors.", "4. Historical Error Proximity: "),
         ("bullet", "Composite Risk Score: Synthesizes the four signals into a unified risk metric: R_i = w_1 * U_i + w_2 * D_M,i + w_3 * S_i + w_4 * H_i, subject to sum(w_k) = 1.0.", "5. Composite Risk Fusion: ")
@@ -338,7 +338,7 @@ def get_part2_content():
 
     content["15.5 Train / Validation / Test Strategy"] = [
         ("p", "Data was partitioned chronologically (70% training, 15% validation, 15% shifted test):", "Temporal Partitioning: ", False),
-        ("bullet", "Training Split: First 350,000 chronological flows (Attack prevalence = 0.35%). Used for model training and baseline covariance fitting."),
+        ("bullet", "Training Split: First 350,000 chronological flows (Attack prevalence = 6.10%). Used for model training and baseline covariance fitting."),
         ("bullet", "Validation Split: Next 75,000 chronological flows (Attack prevalence = 0.33%, 248 attacks, 753 model errors). Used for signal calibration and threshold tuning."),
         ("bullet", "Shifted Test Split: Final 75,000 chronological flows (Attack prevalence = 6.30%, 4,724 attacks, 3,427 model errors). Used strictly for out-of-sample evaluation under temporal shift.")
     ]
@@ -422,7 +422,7 @@ def get_part2_content():
              ["TC-02", "M1: Temporal Splitting", "Enforce strict chronological sorting (350K train, 75K val, 75K test).", "Train max timestamp < Val min timestamp < Test min.", "PASSED"],
              ["TC-03", "M2: Imputation", "Impute nulls/inf values using training set medians.", "Zero NaN values in preprocessed feature matrix.", "PASSED"],
              ["TC-04", "M3: Uncertainty Signal", "Compute 1 - max(P, 1-P) across validation inferences.", "Output bounded strictly in [0.0, 0.5]; higher for P ~ 0.5.", "PASSED"],
-             ["TC-05", "M3: Mahalanobis OOD", "Compute distance with Tikhonov regularization (lambda = 1e-4).", "Matrix inversion stable; distances converted to percentiles.", "PASSED"],
+             ["TC-05", "M3: Mahalanobis OOD", "Compute distance with Tikhonov regularization (eps = 1e-6).", "Matrix inversion stable; distances converted to percentiles.", "PASSED"],
              ["TC-06", "M3: PSI Drift", "Calculate PSI across 49 features over 10 quantile bins.", "PSI correctly flags high-drift features (e.g., flow_duration).", "PASSED"],
              ["TC-07", "M4: Budget Quota", "Verify queue size equals exactly floor(B * N) for B in {1%, 2%, 5%, 10%}.", "Exact allocation: 750, 1500, 3750, 7500 instances.", "PASSED"],
              ["TC-08", "M5: Feedback Loop", "Adjust historical error weight based on audit error density.", "Weights adapt dynamically and re-normalize to sum = 1.0.", "PASSED"]
@@ -466,7 +466,7 @@ def get_part2_content():
     # =========================================================================
     content["18. Current Challenges"] = [
         ("p", "Key challenges identified during Phase-I include maintaining numerical stability for Mahalanobis OOD computation, ensuring reliable error prioritization under temporal distribution shift, handling high model confidence on shifted data, and stabilizing heuristic feedback-based signal weighting:", "Technical Challenges: ", False),
-        ("bullet", "Covariance Matrix Inversion in High Dimensions: Computing regularized Mahalanobis distance across 49 numerical features required careful Tikhonov regularization (lambda = 1e-4) to prevent numerical instability arising from multi-collinear network telemetry attributes."),
+        ("bullet", "Covariance Matrix Inversion in High Dimensions: Computing regularized Mahalanobis distance across 49 numerical features required careful Tikhonov regularization (eps = 1e-6) to prevent numerical instability arising from multi-collinear network telemetry attributes."),
         ("bullet", "Inversion of Geometric OOD Utility Under Shift: In tabular network traffic, out-of-distribution instances frequently correspond to benign high-throughput data transfers rather than classifier errors, causing pure OOD detection to yield a near-zero error capture rate (0.03% to 0.35%)."),
         ("bullet", "Overconfidence in Uncalibrated Classifiers: Modern gradient boosted decision trees maintain high confidence scores on shifted data despite an error rate surge of 4.55x, complicating pure confidence thresholding."),
         ("bullet", "Dynamic Weight Adaptation Stability: Preventing oscillation in heuristic feedback loops when audit batch sizes are small requires smoothing or learning-rate damping.")
