@@ -343,7 +343,7 @@ def build_deck():
         "learning to defer, out-of-distribution detection, distribution shift benchmarks, and the BigFlow-NIDS dataset. "
         "Each entry outlines the key idea and its specific relevance to our human-review allocation framework."
     )
-    add_base_decorations(s6, "Literature Survey: 10 Verified Research Papers", notes_text=notes_s6)
+    add_base_decorations(s6, "Literature Survey: Key Research Papers", notes_text=notes_s6)
 
     t_s6 = s6.shapes.add_table(11, 4, Inches(0.8), Inches(1.5), Inches(11.7), Inches(5.3))
     tbl6 = t_s6.table
@@ -504,7 +504,7 @@ def build_deck():
     p.font.color.rgb = NAVY
 
     ds_str = [
-        ("Development Volume:", " 500,000 network flows in CSV and compressed Parquet format."),
+        ("Development Volume:", " 500,000 network flows in CSV format."),
         ("Observation Ordering:", " Preserves chronological flow sequence to study temporal shifts."),
         ("Task Formulation:", " Binary classification: Benign vs. Attack."),
         ("Ground-Truth Oracles:", " The Label column serves as the evaluation oracle to assess model accuracy and simulated review efficiency."),
@@ -902,7 +902,7 @@ def build_deck():
         ("Attack Prevalence", "≈ 0.33% (248 attacks)", "≈ 6.350% (4,724 attacks)", "Substantial surge in malicious flow volume"),
         ("Model Prediction Errors", "753 errors", "3,427 errors", "4.55× increase in classification mistakes"),
         ("Model Error Rate", "≈ 1.050%", "≈ 4.57%", "Higher operational error rate in later period"),
-        ("Average Model Confidence", "≈ 98.65%", "≈ 96.82%", "Model remains overconfident despite error surge")
+        ("Average Model Confidence", "≈ 98.65%", "≈ 96.82%", "Average confidence fell only 1.8 points (98.65% to 96.82%) while error rate rose from about 1.0% to about 4.6%.")
     ]
     for r_idx, r_data in enumerate(s14_rows, start=1):
         for c_idx, val in enumerate(r_data):
@@ -1084,7 +1084,7 @@ def build_deck():
         "✓ Dataset preprocessing and feature extraction on BigFlow-NIDS",
         "✓ Chronological data splitting (350K Train / 75K Val / 75K Shifted Test)",
         "✓ Machine learning baseline training (Logistic Regression, Random Forest, XGBoost)",
-        "✓ Prediction generation and calibrated class probability scoring",
+        "✓ Prediction generation and class probability scoring (uncalibrated; calibration is planned for Phase 2)",
         "✓ Reliability signal generation: Prediction uncertainty (1 - max P)",
         "✓ Out-of-distribution (OOD) detection using Mahalanobis reference distances",
         "✓ Distribution drift analysis using Population Stability Index (PSI)",

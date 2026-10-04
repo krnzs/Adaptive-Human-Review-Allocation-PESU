@@ -156,7 +156,7 @@ def get_part1_content():
         ("p", "Formalizes the problem of selective classification (classification with a reject option) for modern deep neural networks to guarantee low risk at target coverage levels.", "Research Problem: ", False),
         ("p", "Introduces SelectiveNet, an integrated architecture jointly optimizing classification loss and a soft rejection function with user-defined risk guarantees via Softmax Response (SR).", "Method / Model / Approach: ", False),
         ("p", "Benchmarked on SVHN, CIFAR-10, and ImageNet classification tasks under standard i.i.d. train-test splits.", "Dataset Used: ", False),
-        ("p", "Demonstrates that confidence-based selection dramatically reduces error risk as coverage is reduced (e.g., reaching <1% risk at 70% coverage on CIFAR-10).", "Key Findings: ", False),
+        ("p", "Demonstrates that confidence-based selection dramatically reduces error risk as coverage is reduced (e.g., reaching).", "Key Findings: ", False),
         ("p", "Relies entirely on probability calibration under stationary distributions; fails when temporal distribution shift introduces overconfident misclassifications.", "Limitations: ", False),
         ("p", "Serves as the primary operational baseline (Confidence-Only Strategy) against which our multi-factor approach is quantitatively benchmarked.", "Relevance to Proposed Project: ", False)
     ]
