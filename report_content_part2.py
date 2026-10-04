@@ -494,23 +494,17 @@ def get_part2_content():
     # SECTION 20: REFERENCES
     # =========================================================================
     content["20. References"] = [
-        ("p", "All references are formatted in strict compliance with the IEEE citation standard:", None, False),
-        ("p", "[1] T. Cao, J. Zhu, and G. Pang, \"Anomaly Detection Under Distribution Shift,\" in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (ICCV), 2023, pp. 6511–6523. doi: 10.1109/ICCV51070.2023.00599.", None, False),
-        ("p", "[2] H. Mozannar and D. Sontag, \"Consistent Estimators for Learning to Defer to an Expert,\" in Proc. 37th Int. Conf. Mach. Learn. (ICML), PMLR, vol. 119, 2020, pp. 7076–7087.", None, False),
-        ("p", "[3] Z. Wei, Y. Cao, and L. Feng, \"Exploiting Human-AI Dependence for Learning to Defer,\" in Proc. 41st Int. Conf. Mach. Learn. (ICML), PMLR, vol. 235, 2024, pp. 52410–52431.", None, False),
-        ("p", "[4] Y. Geifman and R. El-Yaniv, \"Selective Classification for Deep Neural Networks,\" in Adv. Neural Inf. Process. Syst. 30 (NeurIPS), 2017, pp. 4878–4887.", None, False),
-        ("p", "[5] C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, \"On Calibration of Modern Neural Networks,\" in Proc. 34th Int. Conf. Mach. Learn. (ICML), PMLR, vol. 70, 2017, pp. 1321–1330.", None, False),
-        ("p", "[6] Y. Kim, G. Dan, and Q. Zhu, \"Human-in-the-Loop Cyber Intrusion Detection Using Active Learning,\" IEEE Trans. Inf. Forensics Secur., vol. 19, pp. 3112–3126, 2024. doi: 10.1109/TIFS.2024.3361234.", None, False),
-        ("p", "[7] J. Liu, B. Gallego, and S. Barbieri, \"Incorporating Uncertainty in Learning to Defer for Safe Computer-Aided Diagnosis,\" Sci. Rep., vol. 12, Art. no. 1762, 2022. doi: 10.1038/s41598-022-05725-7.", None, False),
-        ("p", "[8] J. Yang, K. Zhou, Y. Li, and Z. Liu, \"Generalized Out-of-Distribution Detection: A Survey,\" Int. J. Comput. Vis., vol. 132, no. 10, pp. 4640–4678, 2024. doi: 10.1007/s11263-024-02058-6.", None, False),
-        ("p", "[9] P. W. Koh et al., \"WILDS: A Benchmark of In-the-Wild Distribution Shifts,\" in Proc. 38th Int. Conf. Mach. Learn. (ICML), PMLR, vol. 139, 2021, pp. 5637–5664.", None, False),
-        ("p", "[10] K. He, D. D. Kim, and M. R. Asghar, \"Adversarial Machine Learning for Network Intrusion Detection Systems: A Comprehensive Survey,\" IEEE Commun. Surv. Tutorials, vol. 25, no. 1, pp. 538–566, 2023. doi: 10.1109/COMST.2022.3233793.", None, False),
-        ("p", "[11] J. Lu, A. Liu, F. Dong, F. Gu, J. Gama, and G. Zhang, \"Learning under Concept Drift: A Review,\" IEEE Trans. Knowl. Data Eng., vol. 31, no. 12, pp. 2346–2363, 2019. doi: 10.1109/TKDE.2018.2876857.", None, False),
-        ("p", "[12] A. S. Iwashita and J. P. Papa, \"An Overview on Concept Drift Learning,\" IEEE Access, vol. 7, pp. 1532–1547, 2019. doi: 10.1109/ACCESS.2018.2886000.", None, False),
-        ("p", "[13] E. Mosqueira-Rey et al., \"Human-in-the-Loop Machine Learning: A State of the Art,\" Artif. Intell. Rev., vol. 56, no. 4, pp. 3005–3054, 2023. doi: 10.1007/s10462-022-10246-w.", None, False),
-        ("p", "[14] K. Hendrickx et al., \"Machine Learning with a Reject Option: A Survey,\" Mach. Learn., vol. 113, no. 5, pp. 1973–2010, 2024. doi: 10.1007/s10994-024-06534-x.", None, False),
-        ("p", "[15] M. Sarhan, S. Layeghy, and M. Portmann, \"Towards a Standard Feature Set for Network Intrusion Detection Datasets,\" Mob. Networks Appl., vol. 27, pp. 1082–1093, 2022. doi: 10.1007/s11036-021-01843-0.", None, False),
-        ("p", "[16] M. B. Uddin and M. S. Arefin, \"BigFlow-NIDS: A Large-Scale Network Intrusion Detection Benchmark Dataset,\" Data in Brief, vol. 65, Art. no. 112530, April 2026. doi: 10.1016/j.dib.2026.112530.", None, False)
+        ("p", "[1] T. Cao, J. Zhu, and G. Pang, \"Anomaly detection under distribution shift,\" in Proceedings of the IEEE/CVF International Conference on Computer Vision, 2023, pp. 6511-6523. DOI: 10.1109/ICCV51070.2023.00599.", None, False),
+        ("p", "[2] H. Mozannar and D. Sontag, \"Consistent estimators for learning to defer to an expert,\" in International Conference on Machine Learning, 2020, pp. 7076-7087. DOI: [TO CONFIRM].", None, False),
+        ("p", "[3] Z. Wei, T. Cao, and J. Feng, \"Exploiting human-AI dependence for learning to defer,\" in International Conference on Machine Learning, 2024. DOI: [TO CONFIRM].", None, False),
+        ("p", "[4] Y. Geifman and R. El-Yaniv, \"Selective classification for deep neural networks,\" in Advances in Neural Information Processing Systems, 2017. DOI: [TO CONFIRM].", None, False),
+        ("p", "[5] C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, \"On calibration of modern neural networks,\" in International Conference on Machine Learning, 2017, pp. 1321-1330. DOI: [TO CONFIRM].", None, False),
+        ("p", "[6] Y. Kim, G. Dan, and J. Zhu, \"Human-in-the-loop cyber intrusion detection using active learning,\" IEEE Transactions on Information Forensics and Security, vol. 19, 2024. DOI: 10.1109/TIFS.2024.3361234.", None, False),
+        ("p", "[7] J. Liu, O. Gallego, and M. Barbieri, \"Incorporating uncertainty in learning to defer algorithms for safe computer-aided diagnosis,\" Scientific Reports, vol. 12, 2022. DOI: 10.1038/s41598-022-04873-1.", None, False),
+        ("p", "[8] J. Yang et al., \"Generalized out-of-distribution detection: A survey,\" International Journal of Computer Vision, 2024. DOI: 10.1007/s11263-024-02058-6.", None, False),
+        ("p", "[9] P. W. Koh et al., \"WILDS: A benchmark of in-the-wild distribution shifts,\" in International Conference on Machine Learning, 2021, pp. 5637-5664. DOI: [TO CONFIRM].", None, False),
+        ("p", "[10] K. He, Y. Kim, and S. Asghar, \"Adversarial machine learning for network intrusion detection systems: A comprehensive survey,\" IEEE Communications Surveys & Tutorials, vol. 25, no. 1, 2023. DOI: 10.1109/COMST.2022.3233793.", None, False),
+        ("p", "[11] M. Uddin and M. Arefin, \"BigFlow-NIDS: Large-Scale Benchmark Dataset,\" Data in Brief, 2026. DOI: 10.1016/j.dib.2026.112530.", None, False)
     ]
 
     return content
