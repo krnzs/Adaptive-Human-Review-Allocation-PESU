@@ -844,10 +844,10 @@ def build_pdf():
     
     r1_html = (
         "<b>[1]</b> T. Cao, J. Zhu, and G. Pang, \"Anomaly detection under distribution shift,\" in Proceedings of the IEEE/CVF International Conference on Computer Vision, 2023, pp. 6511-6523. DOI: 10.1109/ICCV51070.2023.00599.<br/><br/>"
-        "<b>[2]</b> H. Mozannar and D. Sontag, \"Consistent estimators for learning to defer to an expert,\" in International Conference on Machine Learning, 2020, pp. 7076-7087. DOI: [TO CONFIRM].<br/><br/>"
-        "<b>[3]</b> Z. Wei, T. Cao, and J. Feng, \"Exploiting human-AI dependence for learning to defer,\" in International Conference on Machine Learning, 2024. DOI: [TO CONFIRM].<br/><br/>"
-        "<b>[4]</b> Y. Geifman and R. El-Yaniv, \"Selective classification for deep neural networks,\" in Advances in Neural Information Processing Systems, 2017. DOI: [TO CONFIRM].<br/><br/>"
-        "<b>[5]</b> C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, \"On calibration of modern neural networks,\" in International Conference on Machine Learning, 2017, pp. 1321-1330. DOI: [TO CONFIRM]."
+        "<b>[2]</b> H. Mozannar and D. Sontag, \"Consistent estimators for learning to defer to an expert,\" in International Conference on Machine Learning, 2020, pp. 7076-7087. DOI: 10.48550/arXiv.2006.01862.<br/><br/>"
+        "<b>[3]</b> Z. Wei, T. Cao, and J. Feng, \"Exploiting human-AI dependence for learning to defer,\" in International Conference on Machine Learning, 2024. DOI: 10.48550/arXiv.2405.15174.<br/><br/>"
+        "<b>[4]</b> Y. Geifman and R. El-Yaniv, \"Selective classification for deep neural networks,\" in Advances in Neural Information Processing Systems, 2017. DOI: 10.48550/arXiv.1705.08500.<br/><br/>"
+        "<b>[5]</b> C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, \"On calibration of modern neural networks,\" in International Conference on Machine Learning, 2017, pp. 1321-1330. DOI: 10.48550/arXiv.1706.04599."
     )
     draw_para(r1_html, 0.7 * inch, PH - 1.8 * inch, 5.6 * inch, ParagraphStyle('R1H', parent=s_sm, fontSize=10, leading=14.5))
 
@@ -858,7 +858,7 @@ def build_pdf():
         "<b>[6]</b> Y. Kim, G. Dan, and J. Zhu, \"Human-in-the-loop cyber intrusion detection using active learning,\" IEEE Transactions on Information Forensics and Security, vol. 19, 2024. DOI: 10.1109/TIFS.2024.3361234.<br/><br/>"
         "<b>[7]</b> J. Liu, O. Gallego, and M. Barbieri, \"Incorporating uncertainty in learning to defer algorithms for safe computer-aided diagnosis,\" Scientific Reports, vol. 12, 2022. DOI: 10.1038/s41598-022-04873-1.<br/><br/>"
         "<b>[8]</b> J. Yang et al., \"Generalized out-of-distribution detection: A survey,\" International Journal of Computer Vision, 2024. DOI: 10.1007/s11263-024-02058-6.<br/><br/>"
-        "<b>[9]</b> P. W. Koh et al., \"WILDS: A benchmark of in-the-wild distribution shifts,\" in International Conference on Machine Learning, 2021, pp. 5637-5664. DOI: [TO CONFIRM].<br/><br/>"
+        "<b>[9]</b> P. W. Koh et al., \"WILDS: A benchmark of in-the-wild distribution shifts,\" in International Conference on Machine Learning, 2021, pp. 5637-5664. DOI: 10.48550/arXiv.2012.07421.<br/><br/>"
         "<b>[10]</b> K. He, Y. Kim, and S. Asghar, \"Adversarial machine learning for network intrusion detection systems: A comprehensive survey,\" IEEE Communications Surveys & Tutorials, vol. 25, no. 1, 2023. DOI: 10.1109/COMST.2022.3233793."
     )
     draw_para(r2_html, 7.0 * inch, PH - 1.8 * inch, 5.6 * inch, ParagraphStyle('R2H', parent=s_sm, fontSize=10, leading=14.5))

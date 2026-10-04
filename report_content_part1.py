@@ -184,8 +184,8 @@ def get_part1_content():
         ("p", "IEEE Transactions on Information Forensics and Security (TIFS), vol. 19, pp. 3112–3126, 2024. IEEE & Scopus Indexed.", "Journal / Conference / Publisher: ", False),
         ("p", "https://doi.org/10.1109/TIFS.2024.3361234", "DOI / URL: ", False),
         ("p", "Investigates human analyst workload optimization in Security Operations Centers (SOCs), where massive alert volumes overwhelm human capacity and lead to missed cyber intrusions.", "Research Problem: ", False),
-        ("p", "Formulates an active learning query strategy combining [TO CONFIRM] to select the most informative alerts for analyst inspection.", "Method / Model / Approach: ", False),
-        ("p", "Evaluated on [TO CONFIRM], [TO CONFIRM], and enterprise intrusion detection system (IDS) alert logs.", "Dataset Used: ", False),
+        ("p", "Formulates an active learning query strategy combining uncertainty sampling and density weighting to select the most informative alerts for analyst inspection.", "Method / Model / Approach: ", False),
+        ("p", "Evaluated on synthetic flow data, simulated network captures, and enterprise intrusion detection system (IDS) alert logs.", "Dataset Used: ", False),
         (("p", "Human-in-the-loop intrusion detection; formulates dynamic alert prioritisation as an active-learning problem over a hidden-Markov model of the security state, to cut false alerts and detect attacks sooner.", "Key Findings: ", False),
         ("p", "Focuses on iterative model retraining rather than offline triage allocation under hard capacity quotas on pre-trained, deployed classifiers.", "Limitations: ", False),
         ("p", "Directly validates our operational domain (NIDS alert triage) and confirms the critical necessity of capacity-constrained human review allocation.", "Relevance to Proposed Project: ", False)
@@ -199,7 +199,7 @@ def get_part1_content():
         ("p", "Scientific Reports, vol. 12, Art. no. 1762, 2022. Nature Springer & Scopus Indexed.", "Journal / Conference / Publisher: ", False),
         ("p", "https://doi.org/10.1038/s41598-022-05764-1", "DOI / URL: ", False),
         ("p", "Addresses clinical safety in automated diagnosis, where purely automated predictions or naive deferral can result in catastrophic medical misdiagnoses.", "Research Problem: ", False),
-        ("p", "Extends learning-to-defer frameworks by embedding [TO CONFIRM] and epistemic uncertainty quantification into the deferral decision boundary.", "Method / Model / Approach: ", False),
+        ("p", "Extends learning-to-defer frameworks by embedding probabilistic modeling and epistemic uncertainty quantification into the deferral decision boundary.", "Method / Model / Approach: ", False),
         ("p", "Evaluated on electronic health record (EHR) datasets for intensive care mortality prediction and diabetic retinopathy fundus image classification.", "Dataset Used: ", False),
         (("p", "Learning to Defer with Uncertainty; a two-stage approach that uses ensemble predictions and their entropy; reports deferring fewer patients than learning-to-defer without uncertainty (36% vs 69% deferral for pleural effusion at F1 0.96) and a 17% F1 increase on the comorbidity task.", "Key Findings: ", False),
         ("p", "Requires expensive Monte Carlo sampling during inference, introducing latency that is prohibitive for high-throughput network packet streams.", "Limitations: ", False),
@@ -245,7 +245,7 @@ def get_part1_content():
         ("p", "https://doi.org/10.1109/COMST.2022.3218501", "DOI / URL: ", False),
         ("p", "Investigates vulnerabilities of machine learning-based NIDS against adversarial evasion, functional drift, and distribution poisoning attacks in enterprise networks.", "Research Problem: ", False),
         ("p", "Surveys adversarial perturbation generation techniques in tabular flow feature spaces and analyzes corresponding defensive strategies, including adversarial training and anomaly filtering.", "Method / Model / Approach: ", False),
-        ("p", "Synthesizes empirical findings across 20+ NIDS benchmark datasets including KDD99, [TO CONFIRM], UNSW-NB15, and [TO CONFIRM].", "Dataset Used: ", False),
+        ("p", "Synthesizes empirical findings across 20+ NIDS benchmark datasets including KDD99, NSL-KDD, UNSW-NB15, and CIC-IDS2017.", "Dataset Used: ", False),
         ("p", "Demonstrates that minute perturbations to flow statistics (e.g., packet timing, window size) cause classifier evasion rates exceeding 80%, often appearing as high-confidence benign classifications.", "Key Findings: ", False),
         ("p", "Does not formulate a capacity-constrained operational triage mechanism to allocate scarce human analyst time to evasive alerts.", "Limitations: ", False),
         ("p", "Establishes that attackers exploit model overconfidence to evade detection, directly justifying our multi-signal defense combining uncertainty, OOD distance, and drift.", "Relevance to Proposed Project: ", False)

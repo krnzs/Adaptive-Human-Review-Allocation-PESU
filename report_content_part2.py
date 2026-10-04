@@ -495,14 +495,14 @@ def get_part2_content():
     # =========================================================================
     content["20. References"] = [
         ("p", "[1] T. Cao, J. Zhu, and G. Pang, \"Anomaly detection under distribution shift,\" in Proceedings of the IEEE/CVF International Conference on Computer Vision, 2023, pp. 6511-6523. DOI: 10.1109/ICCV51070.2023.00599.", None, False),
-        ("p", "[2] H. Mozannar and D. Sontag, \"Consistent estimators for learning to defer to an expert,\" in International Conference on Machine Learning, 2020, pp. 7076-7087. DOI: [TO CONFIRM].", None, False),
-        ("p", "[3] Z. Wei, T. Cao, and J. Feng, \"Exploiting human-AI dependence for learning to defer,\" in International Conference on Machine Learning, 2024. DOI: [TO CONFIRM].", None, False),
-        ("p", "[4] Y. Geifman and R. El-Yaniv, \"Selective classification for deep neural networks,\" in Advances in Neural Information Processing Systems, 2017. DOI: [TO CONFIRM].", None, False),
-        ("p", "[5] C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, \"On calibration of modern neural networks,\" in International Conference on Machine Learning, 2017, pp. 1321-1330. DOI: [TO CONFIRM].", None, False),
+        ("p", "[2] H. Mozannar and D. Sontag, \"Consistent estimators for learning to defer to an expert,\" in International Conference on Machine Learning, 2020, pp. 7076-7087. DOI: 10.48550/arXiv.2006.01862.", None, False),
+        ("p", "[3] Z. Wei, T. Cao, and J. Feng, \"Exploiting human-AI dependence for learning to defer,\" in International Conference on Machine Learning, 2024. DOI: 10.48550/arXiv.2405.15174.", None, False),
+        ("p", "[4] Y. Geifman and R. El-Yaniv, \"Selective classification for deep neural networks,\" in Advances in Neural Information Processing Systems, 2017. DOI: 10.48550/arXiv.1705.08500.", None, False),
+        ("p", "[5] C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, \"On calibration of modern neural networks,\" in International Conference on Machine Learning, 2017, pp. 1321-1330. DOI: 10.48550/arXiv.1706.04599.", None, False),
         ("p", "[6] Y. Kim, G. Dan, and J. Zhu, \"Human-in-the-loop cyber intrusion detection using active learning,\" IEEE Transactions on Information Forensics and Security, vol. 19, 2024. DOI: 10.1109/TIFS.2024.3361234.", None, False),
         ("p", "[7] J. Liu, O. Gallego, and M. Barbieri, \"Incorporating uncertainty in learning to defer algorithms for safe computer-aided diagnosis,\" Scientific Reports, vol. 12, 2022. DOI: 10.1038/s41598-022-04873-1.", None, False),
         ("p", "[8] J. Yang et al., \"Generalized out-of-distribution detection: A survey,\" International Journal of Computer Vision, 2024. DOI: 10.1007/s11263-024-02058-6.", None, False),
-        ("p", "[9] P. W. Koh et al., \"WILDS: A benchmark of in-the-wild distribution shifts,\" in International Conference on Machine Learning, 2021, pp. 5637-5664. DOI: [TO CONFIRM].", None, False),
+        ("p", "[9] P. W. Koh et al., \"WILDS: A benchmark of in-the-wild distribution shifts,\" in International Conference on Machine Learning, 2021, pp. 5637-5664. DOI: 10.48550/arXiv.2012.07421.", None, False),
         ("p", "[10] K. He, Y. Kim, and S. Asghar, \"Adversarial machine learning for network intrusion detection systems: A comprehensive survey,\" IEEE Communications Surveys & Tutorials, vol. 25, no. 1, 2023. DOI: 10.1109/COMST.2022.3233793.", None, False),
         ("p", "[11] M. Uddin and M. Arefin, \"BigFlow-NIDS: Large-Scale Benchmark Dataset,\" Data in Brief, 2026. DOI: 10.1016/j.dib.2026.112530.", None, False)
     ]
