@@ -1,0 +1,101 @@
+\chapter{Methodology}
+
+
+% =========================================================================
+% REVIEW NOTE / INCONSISTENCY DETECTED:
+% In the offline benchmark (src/25_final_strategy_comparison.py), adaptive weights
+% are computed based on pre-defined regime heuristics. Sequential batch-level feedback 
+% adaptation was evaluated in src/28_sequential_feedback_eval.py.
+% Review this section to ensure the textual description accurately aligns with the code.
+% =========================================================================
+
+\section{Detailed Methodology}
+
+This section provides the complete mathematical and algorithmic formulation of the Adaptive Multi-Factor Human-Review Allocation Framework.
+
+\subsection{13.1 Overall Workflow}
+
+The framework executes in two operational phases: (1) Offline Calibration \& Baseline Fitting, and (2) Offline Shifted-Test Review Allocation. During offline calibration on training data D\_train, the classifier f\_theta is trained, the training feature centroid mu and regularized covariance matrix Sigma are estimated, and baseline feature distributions are binned for drift reference. During offline allocation on an incoming inference stream D\_test, the four reliability signals are extracted for every sample x\_i, combined into a composite risk score R\_i, and sorted into a priority queue. The top-K instances corresponding to budget B are routed to human analysts, whose audit feedback dynamically updates signal weights for subsequent batches.
+
+\subsection{13.2 Algorithms / Processing Steps}
+
+\textbf{Mathematical Formulation:} The four reliability signals are mathematically formulated as follows:
+
+\begin{itemize}
+\item \textbf{1. Prediction Uncertainty:} Signal 1 --- Prediction Uncertainty: Quantifies classifier ambiguity from model posteriors: U\_i = 1 - max(P(y=1|x\_i), 1 - P(y=1|x\_i)). Renders U\_i in [0, 0.5], where U\_i = 0.5 denotes maximum ambiguity (P = 0.5) and U\_i = 0 denotes complete certainty.
+\item \textbf{2. Mahalanobis OOD Distance:} Signal 2 --- Regularized Mahalanobis Distance: Measures geometric feature divergence: D\_M\textasciicircum{}2(x\_i) = (x\_i - mu)\textasciicircum{}T (Sigma + lambda * I)\textasciicircum{}(-1) (x\_i - mu), with Tikhonov regularization eps = 1e-6. Raw distances are converted to empirical percentile ranks D\_M,i in [0, 1] relative to validation distance distributions.
+\item \textbf{3. Feature Drift Magnitude:} Signal 3 --- Batch Distribution Drift (PSI): Monitors macroscopic population drift across 10 quantile bins: PSI\_j = sum\_\{k=1\}\textasciicircum{}\{10\} (A\_\{j,k\} - E\_\{j,k\}) * ln(A\_\{j,k\} / E\_\{j,k\}). Per-instance drift vulnerability S\_i is computed by weighting normalized feature drift by the absolute z-score deviation of instance features.
+\item \textbf{4. Historical Error Proximity:} Signal 4 --- Historical Mistake Proximity: Maps x\_i into validation mistake neighborhoods: H\_i = ErrorRate(Bin(x\_\{i,j*\})), where j* represents the feature with the highest PSI drift. Captures whether an incoming sample falls into feature regions prone to classifier errors.
+\item \textbf{5. Composite Risk Fusion:} Composite Risk Score: Synthesizes the four signals into a unified risk metric: R\_i = w\_1 * U\_i + w\_2 * D\_M,i + w\_3 * S\_i + w\_4 * H\_i, subject to sum(w\_k) = 1.0.
+\end{itemize}
+
+\subsection{13.3 Pseudocode}
+
+\textbf{Algorithm 1: End-to-End Adaptive Human-Review Allocation Pipeline:} Algorithm 1 outlines the complete 16-step operational pipeline representing the actual Python implementation across src/01 to src/26, from chronological dataset loading to multi-strategy evaluation with a simulated review oracle.
+
+\texttt{Algorithm 1: End-to-End Adaptive Human-Review Allocation Framework\\ ========================================================================================\\ Input: Raw Benchmark D\_raw (BigFlow-NIDS), Feature subset X (49 features), Target y (Binary: 0/1),\\        Review Budgets B in \{0.01, 0.02, 0.05, 0.10\}, Initial Weights w = [0.25, 0.25, 0.25, 0.25]\\ Output: Priority Queues Q\_B, Error Capture Rates ECR\_B, Review Efficiency EFF\_B, Strategy Comparison\\ ----------------------------------------------------------------------------------------\\ Phase 1: Chronological Partitioning \& Baseline Calibration (Offline)\\  1. D = LoadChronologicalFlows(D\_raw, sample\_size = 500000)             // src/01\\  2. D = SortByTimestamp(D, timestamp\_col = 'flow\_start\_time')          // Prevent temporal leakage\\  3. D\_train, D\_val, D\_test = SplitChronological(D, ratios = [0.70, 0.15, 0.15]) // 350K, 75K, 75K\\  4. theta\_impute, theta\_scale = FitPreprocessing(D\_train[X])           // Median impute, scalers on Train only\\     X\_train = Transform(D\_train[X], theta\_impute); y\_train = D\_train[y]\\     X\_val = Transform(D\_val[X], theta\_impute); y\_val = D\_val[y]\\     X\_test = Transform(D\_test[X], theta\_impute); y\_test = D\_test[y]\\  5. f\_theta = TrainXGBoost(X\_train, y\_train, n\_est=150, max\_depth=6)  // Operational classifier (ROC-AUC=0.9228)\\     mu\_train = mean(X\_train); Sigma\_train = cov(X\_train) + lambda*I   // Tikhonov regularized (lambda=1e-4)\\     H\_val = MapValidationMistakes(f\_theta, X\_val, y\_val)              // Decile mistake map (753 val errors)\\ ----------------------------------------------------------------------------------------\\ Phase 2: In-Line Orthogonal Reliability Signal Extraction\\  For each sample x\_i in X\_test (N = 75,000):\\   6. P\_i = f\_theta.predict\_proba(x\_i)                                   // Class posterior probabilities\\   7. s\_conf[i] = 1.0 - max(P\_i, 1.0 - P\_i)                             // Signal 1: Prediction Uncertainty in [0, 0.5]\\   8. d\_M = sqrt((x\_i - mu\_train)\textasciicircum{}T * Sigma\_train\textasciicircum{}(-1) * (x\_i - mu\_train)) // Regularized Mahalanobis distance\\      s\_ood[i] = EmpiricalPercentileRank(d\_M, D\_val\_distances)          // Signal 2: OOD percentile rank in [0, 1]\\   9. PSI\_vector = ComputeBatchPSI(X\_val, X\_test, bins = 10)             // Population Stability Index drift\\      s\_drift[i] = ComputeInstanceDriftScore(x\_i, PSI\_vector)           // Signal 3: Feature-weighted drift score\\  10. s\_hist[i] = LookupHistoricalErrorRisk(x\_i, H\_val)                  // Signal 4: Validation mistake proximity\\ ----------------------------------------------------------------------------------------\\ Phase 3: Composite Risk Fusion \& Review Queue Allocation\\  11. For each i in 1..N:\\        R[i] = w[0]*s\_conf[i] + w[1]*s\_ood[i] + w[2]*s\_drift[i] + w[3]*s\_hist[i] // Composite risk score (sum(w)=1.0)\\  12. SortedIndices = argsort(R) descending                              // Rank highest-risk instances first\\  13. For each Budget B in \{0.01, 0.02, 0.05, 0.10\}:\\        K = floor(B * N)                                                // Hard operational review quota (e.g. 750, 1500)\\        Q\_review[B] = \{x\_j for j in SortedIndices[0 : K]\}               // Prioritized human review queue\\        Q\_auto[B] = \{x\_j for j in SortedIndices[K : N]\}                 // Autonomous deployment queue\\ ----------------------------------------------------------------------------------------\\ Phase 4: Simulated Review Oracle \& Comparative Evaluation\\  14. AuditedErrors = EvaluateWithReviewOracle(Q\_review[B], y\_test)      // Simulated oracle using test ground truth\\  15. ECR[B] = (AuditedErrors / TotalShiftedErrors) * 100               // Error Capture Rate (Total = 3,427 errors)\\      EFF[B] = (AuditedErrors / K) * 1000                               // Review Efficiency (errors caught per 1,000 reviews)\\  16. CompareStrategies(Random, ConfidenceOnly, OODOnly, StaticMultiFactor, FeedbackAdaptive)\\      If FeedbackAdaptive and (AuditedErrors / K) > BaselineRate:\\         w[3] = min(0.40, w[3] * 1.15); w = w / sum(w)                  // Heuristically adapt weights for next batch\\  Return Q\_review, ECR, EFF, StrategyBenchmarkResults}
+
+% Note: Section 15. ML / DL / AI Methodology — Where Applicable had no direct items in source content.
+
+\subsection{15.1 Dataset and Source}
+
+\textbf{Benchmark Dataset:} The project evaluates models on the recently published BigFlow-NIDS benchmark (M. B. Uddin and M. S. Arefin, Data in Brief, vol. 65, Art. no. 112530, April 2026, doi: 10.1016/j.dib.2026.112530). BigFlow-NIDS is a large-scale derived network intrusion detection benchmark constructed from publicly available NetFlow datasets.
+
+\subsection{15.2 Dataset Characteristics}
+
+\begin{itemize}
+\item \textbf{Total Scale:} The total corpus comprises 66,935,021 network flow records spanning 55 raw attributes and 32 fine-grained attack categories.
+\item \textbf{Experimental Partition:} A 500,000-flow chronological partition is utilized for experimental modeling, preserving authentic time-series dependencies.
+\item \textbf{Feature Space:} 49 numerical flow features (durations, packet lengths, inter-arrival times, throughput metrics, TCP flags, window advertisements) are retained for modeling. The detailed multi-class Attack column is excluded to eliminate target leakage, framing the task as binary classification (0 = Benign, 1 = Attack).
+\end{itemize}
+
+\subsection{15.3 Data Preprocessing}
+
+\begin{itemize}
+\item Infinite values resulting from division by zero in flow rate attributes are converted to nulls and imputed using median values computed strictly over the training split.
+\item Missing numerical values are imputed using training-set feature medians.
+\item StandardScaler is fitted exclusively on training data and applied to scale inputs for Logistic Regression. Tree-based models (Random Forest, XGBoost) operate directly on unscaled features.
+\item All transformations strictly adhere to zero-leakage protocols; validation and test splits are transformed using parameters fitted on the training split.
+\end{itemize}
+
+\subsection{15.4 Data Augmentation / Feature Engineering}
+
+\textbf{Signal Engineering:} Synthetic data augmentation was deliberately avoided to preserve authentic temporal distribution drift characteristics. Feature engineering focused on constructing the four orthogonal reliability signals: normalized prediction uncertainty (1 - confidence), regularized Mahalanobis distance in numerical space, PSI feature drift mapping, and decile historical mistake density.
+
+\subsection{15.5 Train / Validation / Test Strategy}
+
+\textbf{Temporal Partitioning:} Data was partitioned chronologically (70\% training, 15\% validation, 15\% shifted test):
+
+\begin{itemize}
+\item Training Split: First 350,000 chronological flows (Attack prevalence = 6.10\%, 21,344 attacks). Used for model training and baseline covariance fitting.
+\item Validation Split: Next 75,000 chronological flows (Attack prevalence = 0.33\%, 248 attacks, 753 model errors). Used for signal calibration and threshold tuning.
+\item Shifted Test Split: Final 75,000 chronological flows (Attack prevalence = 6.30\%, 4,724 attacks, 3,427 model errors). Used strictly for out-of-sample evaluation under temporal shift.
+\end{itemize}
+
+\subsection{15.6 Cross Validation Strategy}
+
+\textbf{Out-of-Time Protocol:} Standard k-fold cross-validation was explicitly avoided because uniform random shuffling shuffles past and future events, destroying the chronological temporal dependency required to evaluate real-world distribution shift. Instead, chronological out-of-time evaluation was enforced, mirroring genuine production deployment.
+
+\subsection{15.7 Benchmark Models}
+
+Three distinct classification algorithms were trained and benchmarked on the 350,000 training records: (1) Logistic Regression (linear baseline), (2) Random Forest (bagging ensemble), and (3) XGBoost (gradient boosting). ROC-AUC is used as the primary model-ranking metric in this experiment.
+
+\subsection{15.8 Proposed / Modified / Optimised Model}
+
+\textbf{Operational Classifier Selection:} XGBoost achieved the highest ROC-AUC among the evaluated models in this experiment (0.9228) and was therefore selected as the operational classifier. Rather than modifying model weights post-deployment, the framework pairs XGBoost with the Adaptive Multi-Factor Review Allocation Engine as a dynamic reliability wrapper triaging predictions into human review queues.
+
+\subsection{15.9 Hyperparameter Optimisation}
+
+No formal automated hyperparameter optimization (such as Grid Search, Random Search, or Optuna) was performed. The models were evaluated using standard, robust fixed hyperparameter configurations established during baseline tuning:
+ Logistic Regression: max\_iter=1000, class\_weight='balanced', random\_state=42.
+ Random Forest: n\_estimators=150, max\_depth=20, n\_jobs=-1, class\_weight='balanced', random\_state=42.
+ XGBoost: n\_estimators=150, max\_depth=6, learning\_rate=0.1, subsample=0.8, colsample\_bytree=0.8, eval\_metric='logloss', random\_state=42, n\_jobs=4.
+
+\subsection{15.10 Evaluation Metrics}
+
+\begin{itemize}
+\item \textbf{1. Error Capture Rate:} Error Capture Rate (ECR): Percentage of total model misclassifications successfully routed to the review queue: ECR = (Errors in Review Queue / Total Errors in Test Set) * 100.
+\item \textbf{2. Review Efficiency:} Review Efficiency (Precision of Review Queue): Ratio of actual errors identified per audited inference: Efficiency = (Errors in Review Queue / Total Audited Inferences K), or errors caught per 1,000 reviews.
+\item \textbf{3. Model Accuracy Metrics:} Classification Performance: Evaluated using ROC-AUC, Accuracy, Precision, Recall, and F1-score across benign and attack classes. ROC-AUC is used as the primary model-ranking metric.
+\end{itemize}
+

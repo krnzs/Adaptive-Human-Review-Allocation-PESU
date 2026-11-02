@@ -1,0 +1,120 @@
+\chapter{Requirements}
+
+\section{Tools and Technologies Used}
+
+The research pipeline is constructed entirely using open-source data science tools, ensuring absolute reproducibility and cross-platform compatibility.
+
+\subsection{8.1 Programming Languages}
+
+Python 3.12+ (tested and verified on Python 3.12.8 64-bit). Python was selected for its mature scientific computing ecosystem, extensive machine learning libraries, and high-performance vectorized operations via NumPy and pandas.
+
+\subsection{8.2 Frameworks}
+
+\begin{itemize}
+\item \textbf{Streamlit:} Streamlit (v1.32.0) --- Powers the interactive exploratory analytics dashboard (dashboard/app.py), providing offline UI controls and visualization for review queue inspection.
+\item \textbf{Scikit-Learn:} Scikit-Learn (v1.4.1) --- Provides foundational ML algorithms (Logistic Regression, Random Forest), data scalers (StandardScaler), missing value imputers, and evaluation metrics.
+\end{itemize}
+
+\subsection{8.3 Libraries / Packages with Versions}
+
+\begin{itemize}
+\item \textbf{XGBoost:} XGBoost (v2.0.3) --- High-performance gradient boosted decision tree library; serves as the operational classifier.
+\item \textbf{NumPy:} NumPy (v1.26.4) --- Powers vectorized matrix operations, covariance estimation, and Mahalanobis distance computation.
+\item \textbf{Pandas:} Pandas (v2.2.1) --- High-throughput tabular data manipulation, chronological indexing, and CSV I/O.
+\item \textbf{SciPy:} SciPy (v1.12.0) --- Scientific computing routines, matrix inversion, and numerical regularization.
+\item \textbf{Visualization:} Matplotlib (v3.8.3) \& Seaborn (v0.13.2) --- Publication-quality static chart generation and distribution plotting.
+\item \textbf{Plotly:} Plotly (v5.19.0) --- Interactive client-side charting within the Streamlit analytics dashboard.
+\item \textbf{Documentation:} python-docx (v1.2.0) \& ReportLab (v5.0.1) --- Programmatic generation of university capstone documentation.
+\end{itemize}
+
+\subsection{8.4 Database / Storage}
+
+File-based storage architecture utilizing standard CSV and serialized binary joblib formats. In tabular ML workflows, structured CSV files provide high read/write throughput, complete transparent auditability, and seamless integration with NumPy and pandas without the operational overhead of a relational database server. Preprocessed datasets, signal matrices, review queues, and drift tables are persisted in data/ and results/, while trained estimators and scalers are saved in models/.
+
+\subsection{8.5 Development Tools}
+
+\begin{itemize}
+\item \textbf{IDE:} Visual Studio Code (v1.98.0) --- Primary integrated development environment.
+\item \textbf{Version Control:} Git \& GitHub --- Distributed version control and source code tracking.
+\item \textbf{Shell:} PowerShell 7 --- Script execution, automated benchmarking orchestration, and environment configuration.
+\end{itemize}
+
+\subsection{8.6 Deployment Environment}
+
+Localhost workstation execution environment. The 26 pipeline scripts execute locally via Python CLI, and the Streamlit analytics dashboard serves locally on localhost:8501 for responsive, low-latency exploratory analysis. Deployment = NIL / Localhost only.
+
+\subsection{8.7 Hardware Requirements}
+
+\begin{itemize}
+\item \textbf{CPU:} Processor: Multi-core x86\_64 CPU (AMD Ryzen 7 5700X / Intel Core i7 8-core minimum).
+\item \textbf{RAM:} Memory: 16 GB DDR4 RAM minimum (4 GB peak memory consumed during 500K flow batch processing).
+\item \textbf{Disk:} Storage: 10 GB available SSD storage for raw datasets, preprocessed splits, and experimental CSV results.
+\end{itemize}
+
+\section{Functional Requirements}
+
+The functional requirements define the explicit system capabilities, operational workflows, and computational transformations implemented across the 26 sequential Python scripts in the project.
+
+\subsection{9.1 Users / Actors}
+
+\begin{itemize}
+\item \textbf{1. ML Practitioner / Engineer:} Configures dataset partitions, initiates preprocessing pipelines, trains baseline and primary classifiers, extracts reliability signals, and tunes triage scoring parameters.
+\item \textbf{2. Security Analyst / Review Oracle:} Simulated in Phase-I via ground-truth oracle for reproducible benchmarking; receives the prioritized review queue, inspects high-risk network flows, confirms or corrects predictions, and logs verification outcomes.
+\item \textbf{3. System Evaluator / Researcher:} Executes cross-strategy comparative benchmarks, evaluates error capture rates across discrete review budgets (1\%--10\%), inspects feature drift distributions, and audits system reproducibility.
+\end{itemize}
+
+\subsection{9.2 Modules}
+
+\begin{itemize}
+\item \textbf{M1:} Module 1: Ingestion \& Temporal Splitting (Scripts 01, 02, 26) --- Validates raw flow attributes, enforces chronological order, and partitions data into train, validation, and shifted-test sets.
+\item \textbf{M2:} Module 2: Data Preprocessing \& Model Training (Scripts 03, 04) --- Handles missing values, performs scaling, trains Logistic Regression, Random Forest, and XGBoost classifiers, and serializes model artifacts.
+\item \textbf{M3:} Module 3: Multi-Signal Reliability Extraction (Scripts 05, 07, 10, 11, 14, 15, 17) --- Extracts prediction uncertainty, Mahalanobis OOD distance, PSI feature drift, and historical mistake neighborhoods.
+\item \textbf{M4:} Module 4: Risk Scoring \& Review Allocation Engine (Scripts 06, 08, 09, 12, 13) --- Computes static and multi-factor composite risk scores, constructing prioritized review queues under fixed capacity budgets.
+\item \textbf{M5:} Module 5: Shifted Evaluation \& Feedback Loop (Scripts 16, 18, 19, 20, 21, 22, 23, 24, 25) --- Benchmarks five allocation strategies on shifted test data and dynamically updates weights using simulated reviewer feedback.
+\item \textbf{M6:} Module 6: Exploratory Analytics Dashboard (dashboard/app.py) --- Interactive local Streamlit web application for visual analysis of strategies, drift metrics, and efficiency trends.
+\end{itemize}
+
+\subsection{9.3 Functionalities}
+
+Table 9.1 enumerates the complete Functional Requirements (FR1 to FR14), mapping each requirement to its implementing script, primary actor, and verified implementation status.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.14\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.18\textwidth} p{0.28\textwidth}}
+\toprule
+\textbf{Module} & \textbf{User / Actor} & \textbf{Functionality} & \textbf{Description} & \textbf{Current Status} \\
+\midrule
+M1 & ML Engineer & FR1: Ingestion \& Integrity & Loads 500K BigFlow-NIDS flows, verifies 55 attributes, logs SHA-256 hashes (src/01\_test\_dataset.py, src/26\_verify\_bigflow\_sample.py). & Implemented \\
+M1 & ML Engineer & FR2: Chronological Splitting & Enforces strict temporal sorting; partitions into 350K train, 75K val, 75K shifted test (src/02\_create\_splits.py). & Implemented \\
+M1 & ML Engineer & FR3: Preprocessing \& Imputation & Imputes missing values with train medians; scales features for linear models; eliminates leakage (src/03\_preprocess.py). & Implemented \\
+M2 & ML Engineer & FR4: Classifier Training & Trains Logistic Regression, Random Forest, and XGBoost; logs validation ROC-AUC metrics (src/04\_train\_models.py). & Implemented \\
+M3 & ML Engineer & FR5: Prediction Signal Extraction & Extracts class probabilities and confidence scores for validation inferences (src/05\_generate\_prediction\_signals.py). & Implemented \\
+M4 & Reviewer & FR6: Confidence Review Strategy & Ranks validation predictions by lowest confidence (1 - conf) across budgets (src/06\_confidence\_review\_strategy.py). & Implemented \\
+M3 & ML Engineer & FR7: Mahalanobis OOD Extraction & Computes regularized Mahalanobis distance from training centroid (src/07\_ood\_detection.py, src/08\_ood\_review\_strategy.py). & Implemented \\
+M4 & Reviewer & FR8: Static Multi-Factor Review & Synthesizes confidence and OOD percentile scores with static equal weighting (src/09\_static\_multifactor\_strategy.py). & Implemented \\
+M3 & ML Engineer & FR9: PSI Feature Drift Analysis & Calculates Population Stability Index across 49 features; generates drift risk mapping (src/10\_measure\_drift.py, src/11\_create\_drift\_risk.py). & Implemented \\
+M4 & Reviewer & FR10: Adaptive Risk Scoring & Combines confidence, OOD, and drift into adaptive score; evaluates on validation set (src/12\_adaptive\_risk\_score.py, src/13\_adaptive\_review\_strategy.py). & Implemented \\
+M3 & ML Engineer & FR11: Historical Error Modeling & Estimates mistake likelihood based on feature decile neighborhoods (src/14\_historical\_error\_risk.py, src/15\_four\_factor\_risk.py). & Implemented \\
+M5 & Evaluator & FR12: Shifted-Test Evaluation & Extracts signals on shifted test; benchmarks Random, Confidence, OOD, Multi-Factor (src/16 to src/22). & Implemented \\
+M5 & Evaluator & FR13: Feedback-Adaptive Allocation & Simulates review audit; adjusts historical error weight based on error concentration (src/23\_review\_feedback\_loop.py, src/24\_shifted\_feedback\_evaluation.py). & Implemented \\
+M6 & Evaluator & FR14: Analytics Dashboard & Streamlit dashboard (dashboard/app.py) providing interactive charts; full multi-dataset web portal planned for Phase 2. & Implemented (Demo) / Phase-2 (Full) \\
+\bottomrule
+\end{tabular}
+\caption{9.3 Functionalities}
+\end{table}
+
+\section{Non-Functional Requirements}
+
+The system adheres to rigorous software engineering and scientific standards, quantified across core non-functional dimensions:
+
+\begin{itemize}
+\item \textbf{Performance (NFR-P1, NFR-P2):} Signal extraction and multi-strategy review queue sorting across 75,000 test inferences execute efficiently on an 8-core CPU. Vectorized NumPy array operations guarantee responsive queue generation across all four budget tiers.
+\item \textbf{Security \& Integrity (NFR-S1, NFR-S2):} All experiments enforce a fixed random seed (seed=42) and deterministic chronological index sorting. Cryptographic SHA-256 checksums verify raw data integrity, guaranteeing exact bit-for-bit repeatability across independent runs.
+\item \textbf{Scalability (NFR-SC1, NFR-SC2):} Memory footprint remains below 4 GB RAM during 500K flow batch processing. The priority queue algorithms operate with O(N log N) computational complexity, scaling linearly with inference stream volume.
+\item \textbf{Reliability (NFR-R1, NFR-R2):} The priority allocation logic is deterministic and free from non-deterministic heuristic sampling. In degraded operational modes where drift metrics or historical error tables are unavailable, the allocator gracefully falls back to dual-factor or pure confidence ranking without pipeline failure.
+\item \textbf{Usability (NFR-U1, NFR-U2):} The framework avoids black-box neural allocation policies. All composite risk scores are computed via transparent linear combinations of bounded, normalized signals (0.0 to 1.0), providing clear auditability for operational analysts. The Streamlit dashboard provides intuitive interactive visualizations.
+\item \textbf{Availability (NFR-A1):} File-based storage avoids database server downtime. The Streamlit dashboard operates independently on localhost:8501, offering responsive client-side chart re-rendering via Plotly.
+\item \textbf{Other Requirements (NFR-O1: Strict Capacity Enforcement):} The allocator strictly enforces operational capacity constraints. Under no circumstance may the triage queue exceed the configured budget quota K = floor(B * N), preventing queue overflow and human reviewer burnout.
+\end{itemize}
+

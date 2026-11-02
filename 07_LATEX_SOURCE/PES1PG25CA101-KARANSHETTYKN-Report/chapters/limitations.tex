@@ -1,0 +1,35 @@
+\chapter{Limitations}
+
+\section{Current Challenges}
+
+\textbf{Technical Challenges:} Key challenges identified during Phase-I include maintaining numerical stability for Mahalanobis OOD computation, ensuring reliable error prioritization under temporal distribution shift, handling high model confidence on shifted data, and stabilizing heuristic feedback-based signal weighting:
+
+\begin{itemize}
+\item Covariance Matrix Inversion in High Dimensions: Computing regularized Mahalanobis distance across 49 numerical features required careful Tikhonov regularization (eps = 1e-6) to prevent numerical instability arising from multi-collinear network telemetry attributes.
+\item Inversion of Geometric OOD Utility Under Shift: In tabular network traffic, out-of-distribution instances frequently correspond to benign high-throughput data transfers rather than classifier errors, causing pure OOD detection to yield a near-zero error capture rate (0.03\% to 0.35\%).
+\item Overconfidence in Uncalibrated Classifiers: Modern gradient boosted decision trees maintain high confidence scores on shifted data despite an error rate surge of 4.55x, complicating pure confidence thresholding.
+\item Dynamic Weight Adaptation Stability: Preventing oscillation in heuristic feedback loops when audit batch sizes are small requires smoothing or learning-rate damping.
+\end{itemize}
+
+\section{Work Planned Before Review-III}
+
+Table 19.1 outlines the primary engineering and research milestones scheduled for completion prior to Review-III. Guidance from the project guide will focus on validating adaptive weighting methodology, strengthening evaluation across additional datasets, and refining the research methodology for Phase-II extensions.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.1\textwidth} p{0.28\textwidth} p{0.38\textwidth} p{0.16\textwidth}}
+\toprule
+\textbf{Sl No} & \textbf{Planned Activity} & \textbf{Expected Outcome} & \textbf{Target Completion} \\
+\midrule
+1 & Implement Post-Hoc Calibration (Temperature Scaling) & Reduce Expected Calibration Error (ECE) across validation and shifted test sets. & Week 2, Oct 2026 \\
+2 & Integrate SHAP Explainability Engine & Provide local feature attribution explanations for predictions routed to human review. & Week 3, Oct 2026 \\
+3 & Cross-Domain Evaluation on Additional Datasets & Benchmark framework on CIC-IDS2017 and CreditCardFraud benchmarks to evaluate tabular generality. & Week 4, Oct 2026 \\
+4 & Formulate Automated Weight Optimization & Investigate bilevel optimization or grid validation for signal weight selection instead of heuristic tuning. & Week 1, Nov 2026 \\
+5 & Enhance Web Portal UI (Phase-2 Platform) & Build multi-user web dashboard with analyst annotation workflows and live queue tracking. & Week 2, Nov 2026 \\
+6 & Compile Comprehensive Capstone Thesis \& Paper & Finalize Phase-I project documentation, complete experimental validation, and draft publication manuscript. & Week 3, Nov 2026 \\
+\bottomrule
+\end{tabular}
+\caption{Work Planned Before Review-III}
+\end{table}
+

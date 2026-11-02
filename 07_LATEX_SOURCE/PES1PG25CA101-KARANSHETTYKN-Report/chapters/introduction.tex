@@ -1,0 +1,70 @@
+\chapter{Introduction}
+
+\section{Introduction}
+
+The deployment of machine learning algorithms in operational systems has expanded from advisory tools to automated decision infrastructure. Across enterprise cybersecurity, payment networks, and healthcare diagnostics, automated decision systems process large streams of transactions and network events daily. However, the foundational statistical assumption governing supervised machine learning---that training and operational test data are independent and identically distributed (i.i.d.)---is routinely challenged in real-world deployments. Network traffic patterns evolve, threat actors adapt evasion strategies, and operational infrastructure changes over time, introducing substantial covariate and concept drift.
+
+\subsection{2.1 Problem Scenario}
+
+\textbf{The Operational Bottleneck:} In production security operations and high-volume data streams, machine learning systems face two primary operational challenges:
+
+\begin{itemize}
+\item \textbf{Capacity Constraints:} Human analysts have finite cognitive and temporal bandwidth. This study models constrained human-review capacity using discrete 1\%, 2\%, 5\%, and 10\% review budgets to evaluate triage efficiency under finite operational inspection quotas.
+\item \textbf{Reduced Reliability Under Shift:} Complex classifiers (including gradient boosted decision trees) frequently output poorly calibrated probabilities. Under temporal distribution shift, model error rate surges 4.55-fold (from 1.004\% to 4.569\%) while prediction confidence remains high, causing misclassifications that traditional confidence thresholding fails to prioritize.
+\item \textbf{Inefficacy of Naive Audits:} In the absence of principled triage, teams often resort to uniform random auditing or static confidence thresholding. In our empirical evaluations, random sampling captured only 1.17\% of shifted-test errors at a 1\% budget and 2.13\% at a 2\% budget (matching proportional sampling), rendering it ineffective as a safety mechanism.
+\item \textbf{Failure of Isolated Signals:} Standard Out-of-Distribution (OOD) detectors identify geometric feature novelty, but novelty in network traffic frequently corresponds to benign high-volume transfers rather than classification errors. In our experiments, OOD-only filtering captured a dismal 0.03\% of shifted errors at 1\% budget (1 error out of 3,427) and 0.26\% at 2\% budget (9 errors), performing substantially worse than random guessing.
+\end{itemize}
+
+\subsection{2.2 Proposed Solution}
+
+\textbf{Multi-Signal Reliability Engine:} To address these limitations, this project designs, implements, and evaluates an Adaptive Human-Review Allocation Framework. Rather than relying on any single failure indicator, the system unifies four heterogeneous, complementary reliability signals into a composite risk score:
+
+\begin{itemize}
+\item \textbf{1. Prediction Uncertainty (Confidence Risk):} Quantifies classifier uncertainty derived from class posterior probabilities, scaled inversely such that borderline predictions receive higher inspection priority: U\_i = 1 - max(P, 1-P).
+\item \textbf{2. Out-of-Distribution (OOD) Distance:} Computes regularized Mahalanobis distance from training feature centroids in numerical representation space, capturing semantic and geometric feature divergence.
+\item \textbf{3. Feature Drift Magnitude:} Tracks macroscopic population-level feature drift across chronological batches using the Population Stability Index (PSI), projecting batch drift into per-instance vulnerability scores.
+\item \textbf{4. Historical Error Proximity:} Maps test instances into historical feature deciles to assess whether incoming records resemble training-set mistake clusters.
+\end{itemize}
+
+The composite risk score ranks all incoming inferences into a prioritized review queue. The top-K instances corresponding exactly to the designated operational capacity budget (K = floor(B * N) for B in \{1\%, 2\%, 5\%, 10\%\}) are routed to the review queue. Furthermore, a heuristic feedback loop adjusts signal weights based on verified audit error concentrations, optimizing subsequent triage batches.
+
+\subsection{2.3 Purpose}
+
+\textbf{Research Objectives:} The primary purpose of this research is to investigate whether multi-factor reliability scoring improves error capture over pure confidence ranking under tight operational budgets (1\%--2\%) in the presence of distribution shift. Specifically, the project aims to:
+
+\begin{itemize}
+\item Empirically evaluate whether multi-factor reliability scoring improves error capture over pure confidence ranking under tight operational review budgets (1\%--2\%).
+\item Investigate the empirical relationship between selective classification (confidence ranking), representation-space OOD distance, macroscopic drift metrics, and true model errors under temporal shift.
+\item Provide a fully reproducible, modular software pipeline that production teams can evaluate to triage high-throughput tabular classifiers without requiring model retraining or architectural redesign.
+\end{itemize}
+
+\subsection{2.4 Scope}
+
+\textbf{Phase Boundary Delineation:} To ensure scientific rigor and clear engineering execution, the project scope is formally demarcated between completed Phase-I deliverables and planned Phase-II extensions:
+
+\begin{itemize}
+\item \textbf{In-Scope (Phase-I Implemented):} Evaluation conducted on a 500,000-flow chronological partition of the BigFlow-NIDS benchmark (a large-scale derived network intrusion detection benchmark constructed from publicly available NetFlow datasets); binary classification (0 = Benign, 1 = Attack); 49 numerical flow features; three baseline classifiers (Logistic Regression, Random Forest, XGBoost); offline simulated review oracle using test ground truth for reproducible benchmarking; four discrete review budgets (1\%, 2\%, 5\%, 10\%); local Streamlit exploratory analytics dashboard.
+\item \textbf{Out-of-Scope (Phase-I):} Live network packet capture / inline hardware sniffing; real human subjects in the loop (ground-truth labels were used as a simulated review oracle for reproducible benchmarking; no real human subjects participated in Phase-I); multi-class attack categorization (the detailed 32-class attack column was excluded to eliminate label leakage); automated bilevel optimization of signal weights (heuristic feedback-based weighting evaluated).
+\item \textbf{Planned Scope (Phase-II):} Cross-domain tabular generalization across financial fraud and clinical datasets; post-hoc probability calibration (Temperature Scaling); SHAP-based feature attribution for human-audited cases; full production-grade web application with multi-user authentication.
+\end{itemize}
+
+\section{Review-I Recommendations and Action Taken}
+
+During the Phase-I Review-I evaluation, the capstone review panel provided critical constructive feedback regarding dataset selection, baseline formulation, and engineering reproducibility. Table 3.1 details each recommendation received and the specific concrete actions taken in Review-II to address them.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.1\textwidth} p{0.28\textwidth} p{0.38\textwidth} p{0.16\textwidth}}
+\toprule
+\textbf{Sl No} & \textbf{Review-I Recommendation} & \textbf{Action Taken} & \textbf{Status} \\
+\midrule
+1 & Clearly define the scope of distribution shift and select a realistic, large-scale benchmark dataset rather than synthetic perturbations. & Replaced synthetic shifts with the authentic BigFlow-NIDS benchmark (66.9M flows, 55 attributes). Implemented strict chronological 70/15/15 partitioning (350K train, 75K validation, 75K shifted test), creating a genuine 4.55x error rate surge and 19.05x attack prevalence shift. & Addressed \\
+2 & Formulate a quantitative baseline for human review capacity constraints instead of assuming arbitrary deferral rates. & Formally defined four operational budget tiers (1\%, 2\%, 5\%, 10\% of total inference volume). Benchmarked allocation strategies strictly against these realistic operational inspection quotas. & Addressed \\
+3 & Incorporate multiple failure indicators beyond pure model confidence, as classifiers are known to be overconfident. & Engineered four orthogonal reliability signals: prediction uncertainty, regularized Mahalanobis OOD distance, Population Stability Index (PSI) drift, and historical mistake decile proximity. & Addressed \\
+4 & Demonstrate complete reproducibility and modularity across the data science pipeline. & Architected 26 sequentially numbered, standalone Python scripts in src/. Verified deterministic execution with fixed random seeds (seed=42) and SHA-256 data checksums. Implemented an interactive Streamlit dashboard. & Addressed \\
+\bottomrule
+\end{tabular}
+\caption{Review-I Recommendations and Action Taken}
+\end{table}
+

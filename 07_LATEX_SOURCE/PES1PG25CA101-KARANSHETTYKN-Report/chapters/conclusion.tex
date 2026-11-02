@@ -1,0 +1,7 @@
+\chapter{Conclusion}
+
+This capstone project (Phase-I Review-II) addresses the degradation of machine learning classifiers under temporal distribution shift within capacity-constrained operational environments. By systematically evaluating an adaptive multi-factor human-review allocation framework on a 500,000-flow chronological partition of the BigFlow-NIDS benchmark, this work demonstrates that multi-signal triage (combining uncertainty, Mahalanobis OOD distance, Population Stability Index, and historical error proximity) substantially outperforms conventional confidence-based ranking under tight review quotas (1%--2% audit budgets).
+
+Specifically, at a 1% operational inspection quota, the adaptive multi-factor strategy captures 610 errors (17.80% error capture) compared to 463 errors (13.51%) for pure confidence ranking. At a 2% budget, it captures 1,174 errors (34.26%) compared to 916 errors (26.73%). Concurrently, empirical results reveal an honest crossover threshold: at broader review allocations (5%--10%), pure confidence triage captures a larger total volume of errors (65.45% and 84.01% respectively). 
+
+To date, 13 of 14 functional requirements (92.9% fully implemented) have been verified across 26 sequential Python execution scripts and an interactive Streamlit exploratory analytics dashboard. Future work for Review-III and Phase-II will focus on temperature calibration of probabilities, dynamic runtime latency benchmarks, and active human-analyst review workflows.

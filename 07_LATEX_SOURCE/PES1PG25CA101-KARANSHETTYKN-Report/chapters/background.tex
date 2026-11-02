@@ -1,0 +1,55 @@
+\chapter{Background}
+
+\section{Literature Review Synthesis}
+
+Rather than treating the literature as isolated studies, this synthesis examines the broader scientific landscape spanning five intersecting domains: selective classification, probability calibration, out-of-distribution detection, concept drift monitoring, and collaborative human-AI learning-to-defer.
+
+\subsection{5.1 Background Study}
+
+The fundamental premise of selective prediction traces back to Chow's rule for optimal reject options in Bayesian classification. In modern machine learning, Geifman and El-Yaniv (2017) adapted this principle to deep neural networks by ranking instances by maximum softmax probability. However, Guo et al. (2017) demonstrated that modern architectures are fundamentally miscalibrated, tending toward extreme overconfidence. When models encounter temporal distribution shifts (Koh et al., 2021; Cao et al., 2023), this miscalibration exacerbates: erroneous predictions are frequently assigned high posterior probabilities. Concurrently, the OOD detection literature (Yang et al., 2024) has developed sophisticated representation-space metrics to detect semantic novelty. In parallel, data stream researchers (Lu et al., 2019; Iwashita \& Papa, 2019) have formulated statistical drift metrics such as the Population Stability Index (PSI). Finally, learning-to-defer frameworks (Mozannar \& Sontag, 2020; Wei et al., 2024; Liu et al., 2022) have formalized the delegation of difficult instances to human experts.
+
+\subsection{5.2 Major Approaches Identified}
+
+\begin{itemize}
+\item \textbf{1. Confidence-Based Rejection:} Relies on output probabilities (max P(y|x)) or entropy to reject low-confidence instances. While computationally efficient, it fails when the classifier is confidently wrong.
+\item \textbf{2. Geometric \& Representation OOD Detection:} Measures feature divergence from the training centroid using distance metrics (Mahalanobis distance) or energy functions. Excels at detecting novelty, but novel samples do not necessarily correlate with prediction errors.
+\item \textbf{3. Statistical Distribution Drift Monitoring:} Monitors population-level distribution changes across batches (e.g., PSI, Wasserstein distance). However, these metrics are macroscopic aggregates and cannot directly score individual predictions for operational triage.
+\item \textbf{4. Learning-to-Defer (L2D):} Jointly trains classifiers and deferral policies to optimize human-machine teaming. While mathematically elegant, existing formulations assume unconstrained or fixed-cost deferral rather than operating within strict percentage budgets.
+\end{itemize}
+
+\subsection{5.3 Major Findings}
+
+\textbf{Cross-Literature Consensus:} Three critical consensus findings emerge across the reviewed literature:
+
+\begin{itemize}
+\item Overconfidence is pervasive in modern classifiers, making single-signal confidence filtering structurally vulnerable under real-world shifts.
+\item Geometric feature novelty does not equal misclassification vulnerability: in tabular domains, out-of-distribution samples often represent benign high-volume variations rather than attacker evasion.
+\item Human verification capacity in operational domains (such as cybersecurity and finance) is strictly finite, necessitating triage algorithms that optimize error capture within fixed 1\% to 10\% capacity quotas.
+\end{itemize}
+
+\subsection{5.4 Limitations of Existing Work}
+
+\textbf{Methodological Gaps:} Despite significant advances, existing paradigms suffer from critical operational limitations:
+
+\begin{itemize}
+\item Isolation of Failure Indicators: Existing research explores confidence, OOD distance, drift monitoring, and historical mistakes in separate silos without examining how they interact.
+\item Lack of Explicit Capacity Quotas: Learning-to-defer and selective classification assume continuous threshold tuning or theoretical penalty costs, failing to operate within rigid enterprise capacity slicing (e.g., strictly 1\%, 2\%, 5\%, or 10\%).
+\item Uncalibrated Posteriors Under Shift: Selective classification baselines rely on stationary probability distributions and degrade severely when temporal shift alters class prevalence.
+\end{itemize}
+
+\subsection{5.5 Identified Research / Application Gap}
+
+\textbf{The Research Gap:} Grounded strictly in the surveyed literature, the identified research gap is formulated as follows: Existing research addresses selective classification, confidence-based rejection, OOD detection, distribution-shift monitoring, and learning-to-defer in isolation. This project investigates how multiple reliability signals can be combined for human-review prioritization under fixed review budgets and chronological distribution shift. Specifically:
+
+\begin{itemize}
+\item 1. Prior selective classification and reject-option literature relies predominantly on prediction probabilities, which become uncalibrated under real-world distribution shifts.
+\item 2. Independent out-of-distribution (OOD) detection and macroscopic drift monitoring frameworks identify anomalous data points or population-level distribution changes, but they fail to correlate geometric feature novelty with true classification errors at the individual prediction level.
+\item 3. Existing learning-to-defer methods jointly optimize human-AI decision pipelines under theoretical cost trade-offs, yet they lack explicit mechanisms to operate within rigid, operational capacity quotas (e.g., reviewing strictly 1\% to 10\% of high-throughput traffic).
+\item 4. Network intrusion detection research has explored active learning and adversarial robustness in isolation, but it lacks an empirical framework benchmarking how heterogeneous reliability signals interact under temporal data splits.
+\item 5. No existing system combines model uncertainty, instance-level OOD distance, macroscopic drift, and empirical error neighborhoods into an adaptive triage allocator that dynamically shifts weighting based on offline reviewer feedback.
+\end{itemize}
+
+\subsection{5.6 How the Proposed Project Addresses the Gap}
+
+This project investigates an integrated combination of these signals in the specific setting of capacity-constrained review allocation under chronological distribution shift by: (1) normalizing and synthesizing four complementary reliability signals into a single unified risk score; (2) implementing explicit top-K budget slicing corresponding to realistic enterprise constraints (1\%, 2\%, 5\%, 10\%); (3) evaluating performance under authentic chronological distribution shift on the BigFlow-NIDS benchmark; and (4) incorporating a heuristic feedback mechanism that updates signal importance based on verified audit error density.
+

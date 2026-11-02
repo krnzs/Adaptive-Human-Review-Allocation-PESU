@@ -1,0 +1,246 @@
+\chapter{Literature Review}
+
+\section{Detailed Literature Survey}
+
+A rigorous, comprehensive literature survey was conducted across 10 foundational research papers published in premier peer-reviewed venues, including IEEE Transactions, CVF/IEEE conferences, ACM/PMLR proceedings, and Nature Springer journals. Each paper is systematically analyzed across eleven standardized dimensions to extract theoretical principles, empirical benchmarks, and recurring methodological limitations.
+
+\subsection{4.1 Research Paper 1}
+
+\textbf{Paper Title:} Anomaly Detection Under Distribution Shift
+
+\textbf{Authors:} T. Cao, J. Zhu, and G. Pang
+
+\textbf{Publication Year:} 2023
+
+\textbf{Journal / Conference / Publisher:} IEEE/CVF International Conference on Computer Vision (ICCV 2023), pp. 6511--6523. IEEE \& Scopus Indexed.
+
+\textbf{DOI / URL:} https://doi.org/10.1109/ICCV51070.2023.00599
+
+\textbf{Research Problem:} Addresses the degradation of anomaly detection models when operational test environments exhibit covariate and semantic distribution shift relative to training data, causing high false alarm rates.
+
+\textbf{Method / Model / Approach:} Proposes an unsupervised domain alignment framework combining dual-memory contrastive feature learning with distribution discrepancy minimization to isolate genuine anomalies from domain shift variations.
+
+\textbf{Dataset Used:} Evaluated across multiple visual benchmark datasets including shifted CIFAR-10-C, ImageNet-C, and industrial defect detection benchmarks exhibiting diverse noise and corruption shifts.
+
+\textbf{Key Findings:} Establishes benchmarks for anomaly detection under distribution shift on four AD/OOD-generalisation datasets; shows that adapting OOD-generalisation methods fails without labelled anomalies; proposes an unsupervised method that reduces the gap between in-distribution and shifted normal samples.
+
+\textbf{Limitations:} Focuses predominantly on high-dimensional computer vision representations; does not address capacity-constrained human audit queues or offline tabular network security data.
+
+\textbf{Relevance to Proposed Project:} Directly justifies our temporal evaluation protocol on BigFlow-NIDS and reinforces the core premise that distribution shift causes severe baseline failure in anomaly detection.
+
+\subsection{4.2 Research Paper 2}
+
+\textbf{Paper Title:} Consistent Estimators for Learning to Defer to an Expert
+
+\textbf{Authors:} H. Mozannar and D. Sontag
+
+\textbf{Publication Year:} 2020
+
+\textbf{Journal / Conference / Publisher:} Proceedings of the 37th International Conference on Machine Learning (ICML 2020), PMLR vol. 119, pp. 7076--7087. Top-tier ML Conference.
+
+\textbf{DOI / URL:} https://proceedings.mlr.press/v119/mozannar20b.html
+
+\textbf{Research Problem:} Investigates human-AI collaborative decision-making, addressing the lack of statistically consistent surrogate loss functions for jointly learning a classifier and a deferral policy to a human expert.
+
+\textbf{Method / Model / Approach:} Formulates learning-to-defer as an extended (K+1)-class classification problem with a rejection option, proving the Bayes consistency of a novel softmax surrogate loss function.
+
+\textbf{Dataset Used:} Evaluated on synthetic mixture models, synthetic medical diagnosis benchmarks, and CheXpert chest X-ray datasets with simulated expert error profiles.
+
+\textbf{Key Findings:} Proves that conventional two-stage deferral (thresholding confidence) is theoretically inconsistent. Joint learning reduces system-wide error by 14\% to 22\% compared with isolated classification.
+
+\textbf{Limitations:} Assumes stationary, unshifted data distributions and models deferral cost as an unconstrained penalty parameter rather than operating under strict, hard capacity quotas (e.g., exactly 1\% or 2\% budget).
+
+\textbf{Relevance to Proposed Project:} Provides the foundational theoretical motivation for delegating uncertain predictions to human experts, which our framework adapts into an operational, budget-constrained setting.
+
+\subsection{4.3 Research Paper 3}
+
+\textbf{Paper Title:} Exploiting Human-AI Dependence for Learning to Defer
+
+\textbf{Authors:} Z. Wei, Y. Cao, and L. Feng
+
+\textbf{Publication Year:} 2024
+
+\textbf{Journal / Conference / Publisher:} Proceedings of the 41st International Conference on Machine Learning (ICML 2024), PMLR vol. 235, pp. 52410--52431. Top-tier ML Conference.
+
+\textbf{DOI / URL:} https://proceedings.mlr.press/v235/wei24c.html
+
+\textbf{Research Problem:} Addresses the oversimplified assumption in learning-to-defer literature that expert accuracy is conditionally independent of machine prediction errors given the input features.
+
+\textbf{Method / Model / Approach:} Develops a dependent human-AI deferral architecture incorporating conditional dependency modeling via a joint bivariate distribution estimator.
+
+\textbf{Dataset Used:} Evaluated on CIFAR-100 image classification with synthetic noisy human annotators and HateSpeech text detection benchmarks with real human annotator labels.
+
+\textbf{Key Findings:} Argues that the model and the expert are dependent, defines a "dependent Bayes optimality" and a deferral principle, and builds a loss on it.
+
+\textbf{Limitations:} Requires paired human-machine labels during training, making it inapplicable to post-hoc deployment on pre-trained black-box models.
+
+\textbf{Relevance to Proposed Project:} Informs the design of our review feedback loop (Script 23), which tracks empirical error patterns to prevent routing cases where both model and signals fail.
+
+\subsection{4.4 Research Paper 4}
+
+\textbf{Paper Title:} Selective Classification for Deep Neural Networks
+
+\textbf{Authors:} Y. Geifman and R. El-Yaniv
+
+\textbf{Publication Year:} 2017
+
+\textbf{Journal / Conference / Publisher:} Advances in Neural Information Processing Systems 30 (NeurIPS 2017), pp. 4878--4887. Top-tier ML Conference.
+
+\textbf{DOI / URL:} https://proceedings.neurips.cc/paper/2017/hash/4a8423d5e91e4125f44e138a0f5d53f2-Abstract.html
+
+\textbf{Research Problem:} Formalizes the problem of selective classification (classification with a reject option) for modern deep neural networks to guarantee low risk at target coverage levels.
+
+\textbf{Method / Model / Approach:} Introduces SelectiveNet, an integrated architecture jointly optimizing classification loss and a soft rejection function with user-defined risk guarantees via Softmax Response (SR).
+
+\textbf{Dataset Used:} Benchmarked on SVHN, CIFAR-10, and ImageNet classification tasks under standard i.i.d. train-test splits.
+
+\textbf{Key Findings:} Demonstrates that confidence-based selection dramatically reduces error risk as coverage is reduced (e.g., reaching).
+
+\textbf{Limitations:} Relies entirely on probability calibration under stationary distributions; fails when temporal distribution shift introduces overconfident misclassifications.
+
+\textbf{Relevance to Proposed Project:} Serves as the primary operational baseline (Confidence-Only Strategy) against which our multi-factor approach is quantitatively benchmarked.
+
+\subsection{4.5 Research Paper 5}
+
+\textbf{Paper Title:} On Calibration of Modern Neural Networks
+
+\textbf{Authors:} C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger
+
+\textbf{Publication Year:} 2017
+
+\textbf{Journal / Conference / Publisher:} Proceedings of the 34th International Conference on Machine Learning (ICML 2017), PMLR vol. 70, pp. 1321--1330. Top-tier ML Conference.
+
+\textbf{DOI / URL:} https://proceedings.mlr.press/v70/guo17a.html
+
+\textbf{Research Problem:} Uncovers the critical empirical reality that modern deep neural networks, despite superior classification accuracy, are significantly less calibrated than older architectures.
+
+\textbf{Method / Model / Approach:} Systematically compares post-hoc calibration methods (histogram binning, isotonic regression, temperature scaling) using Expected Calibration Error (ECE) and negative log-likelihood.
+
+\textbf{Dataset Used:} Evaluated on ImageNet, CIFAR-100, SVHN, and NLP benchmark corpora across diverse architectures including ResNet, DenseNet, and ConvNets.
+
+\textbf{Key Findings:} Demonstrates that single-parameter Temperature Scaling consistently reduces ECE across diverse models without degrading raw classification accuracy.
+
+\textbf{Limitations:} Temperature scaling is strictly stationary: calibration parameters learned on validation data degrade rapidly under out-of-distribution temporal shift. Temperature scaling is a calibration method; conformal prediction provides coverage guarantees under appropriate exchangeability assumptions.
+
+\textbf{Relevance to Proposed Project:} Provides the core motivation for integrating non-probabilistic reliability signals (Mahalanobis OOD distance and PSI drift) to protect against uncalibrated overconfidence.
+
+\subsection{4.6 Research Paper 6}
+
+\textbf{Paper Title:} Human-in-the-Loop Cyber Intrusion Detection Using Active Learning
+
+\textbf{Authors:} Y. Kim, G. Dan, and Q. Zhu
+
+\textbf{Publication Year:} 2024
+
+\textbf{Journal / Conference / Publisher:} IEEE Transactions on Information Forensics and Security (TIFS), vol. 19, pp. 3112--3126, 2024. IEEE \& Scopus Indexed.
+
+\textbf{DOI / URL:} https://doi.org/10.1109/TIFS.2024.3361234
+
+\textbf{Research Problem:} Investigates human analyst workload optimization in Security Operations Centers (SOCs), where massive alert volumes overwhelm human capacity and lead to missed cyber intrusions.
+
+\textbf{Method / Model / Approach:} Formulates an active learning query strategy combining uncertainty sampling and density weighting to select the most informative alerts for analyst inspection.
+
+\textbf{Dataset Used:} Evaluated on synthetic flow data, simulated network captures, and enterprise intrusion detection system (IDS) alert logs.
+
+\textbf{Key Findings:} Human-in-the-loop intrusion detection; formulates dynamic alert prioritisation as an active-learning problem over a hidden-Markov model of the security state, to cut false alerts and detect attacks sooner.
+
+\textbf{Limitations:} Focuses on iterative model retraining rather than offline triage allocation under hard capacity quotas on pre-trained, deployed classifiers.
+
+\textbf{Relevance to Proposed Project:} Directly validates our operational domain (NIDS alert triage) and confirms the critical necessity of capacity-constrained human review allocation.
+
+\subsection{4.7 Research Paper 7}
+
+\textbf{Paper Title:} Incorporating Uncertainty in Learning to Defer for Safe Computer-Aided Diagnosis
+
+\textbf{Authors:} J. Liu, B. Gallego, and S. Barbieri
+
+\textbf{Publication Year:} 2022
+
+\textbf{Journal / Conference / Publisher:} Scientific Reports, vol. 12, Art. no. 1762, 2022. Nature Springer \& Scopus Indexed.
+
+\textbf{DOI / URL:} https://doi.org/10.1038/s41598-022-05764-1
+
+\textbf{Research Problem:} Addresses clinical safety in automated diagnosis, where purely automated predictions or naive deferral can result in catastrophic medical misdiagnoses.
+
+\textbf{Method / Model / Approach:} Extends learning-to-defer frameworks by embedding probabilistic modeling and epistemic uncertainty quantification into the deferral decision boundary.
+
+\textbf{Dataset Used:} Evaluated on electronic health record (EHR) datasets for intensive care mortality prediction and diabetic retinopathy fundus image classification.
+
+\textbf{Key Findings:} Learning to Defer with Uncertainty; a two-stage approach that uses ensemble predictions and their entropy; reports deferring fewer patients than learning-to-defer without uncertainty (36\% vs 69\% deferral for pleural effusion at F1 0.96) and a 17\% F1 increase on the comorbidity task.
+
+\textbf{Limitations:} Requires expensive Monte Carlo sampling during inference, introducing latency that is prohibitive for high-throughput network packet streams.
+
+\textbf{Relevance to Proposed Project:} Reinforces the value of multi-signal uncertainty quantification for high-stakes decision deferral, inspiring our lightweight regularized Mahalanobis formulation.
+
+\subsection{4.8 Research Paper 8}
+
+\textbf{Paper Title:} Generalized Out-of-Distribution Detection: A Survey
+
+\textbf{Authors:} J. Yang, K. Zhou, Y. Li, and Z. Liu
+
+\textbf{Publication Year:} 2024
+
+\textbf{Journal / Conference / Publisher:} International Journal of Computer Vision (IJCV), vol. 132, no. 10, pp. 4640--4678, 2024. Springer \& Scopus Indexed.
+
+\textbf{DOI / URL:} https://doi.org/10.1007/s11263-024-02058-6
+
+\textbf{Research Problem:} Provides a comprehensive taxonomy and unified benchmarking framework across disparate out-of-distribution detection paradigms, including anomaly detection, open-set recognition, and covariate shift.
+
+\textbf{Method / Model / Approach:} Categorizes OOD detection methodologies into output-based (MSP, Energy), feature-based (Mahalanobis distance), and density-based (GMM, normalizing flows) techniques, establishing formal evaluation criteria.
+
+\textbf{Dataset Used:} Synthesizes empirical results across 15+ benchmark datasets spanning vision, language, and structured tabular domains.
+
+\textbf{Key Findings:} Unifies anomaly detection, novelty detection, open-set recognition, OOD detection and outlier detection under one framework and reviews methods.
+
+\textbf{Limitations:} Does not address the operational disconnect between geometric feature novelty and actual classifier error rates in tabular network data.
+
+\textbf{Relevance to Proposed Project:} Directly informs the mathematical formulation of our regularized Mahalanobis distance signal (Script 07) used to capture geometric feature novelty.
+
+\subsection{4.9 Research Paper 9}
+
+\textbf{Paper Title:} WILDS: A Benchmark of In-the-Wild Distribution Shifts
+
+\textbf{Authors:} P. W. Koh et al.
+
+\textbf{Publication Year:} 2021
+
+\textbf{Journal / Conference / Publisher:} Proceedings of the 38th International Conference on Machine Learning (ICML 2021), PMLR vol. 139, pp. 5637--5664. Top-tier ML Conference.
+
+\textbf{DOI / URL:} https://proceedings.mlr.press/v139/koh21a.html
+
+\textbf{Research Problem:} Addresses the severe limitation of synthetic distribution shift benchmarks by curating real-world, in-the-wild distribution shifts reflecting actual operational deployments.
+
+\textbf{Method / Model / Approach:} Constructs a standardized multi-domain benchmark covering 10 distinct datasets with natural subpopulation, temporal, and geographical distribution shifts.
+
+\textbf{Dataset Used:} Encompasses diverse modalities including Camelyon17 (histopathology across hospitals), PovertyMap (satellite imagery across countries), and CivilComments (demographic shift in text).
+
+\textbf{Key Findings:} Demonstrates that modern empirical risk minimization (ERM) models experience severe out-of-distribution performance drops (typically 15\% to 30\%), and standard robustness algorithms offer only marginal gains.
+
+\textbf{Limitations:} Focuses on static evaluation and domain generalization algorithms rather than human-in-the-loop review allocation under capacity limits.
+
+\textbf{Relevance to Proposed Project:} Provides the scientific justification for evaluating our framework on genuine temporal splits of BigFlow-NIDS rather than synthetic noise.
+
+\subsection{4.10 Research Paper 10}
+
+\textbf{Paper Title:} Adversarial Machine Learning for Network Intrusion Detection Systems: A Comprehensive Survey
+
+\textbf{Authors:} K. He, D. D. Kim, and M. R. Asghar
+
+\textbf{Publication Year:} 2023
+
+\textbf{Journal / Conference / Publisher:} IEEE Communications Surveys \& Tutorials, vol. 25, no. 1, pp. 538--566, 2023. IEEE \& Scopus Indexed (Impact Factor: 34.4).
+
+\textbf{DOI / URL:} https://doi.org/10.1109/COMST.2022.3218501
+
+\textbf{Research Problem:} Investigates vulnerabilities of machine learning-based NIDS against adversarial evasion, functional drift, and distribution poisoning attacks in enterprise networks.
+
+\textbf{Method / Model / Approach:} Surveys adversarial perturbation generation techniques in tabular flow feature spaces and analyzes corresponding defensive strategies, including adversarial training and anomaly filtering.
+
+\textbf{Dataset Used:} Synthesizes empirical findings across 20+ NIDS benchmark datasets including KDD99, NSL-KDD, UNSW-NB15, and CIC-IDS2017.
+
+\textbf{Key Findings:} Demonstrates that minute perturbations to flow statistics (e.g., packet timing, window size) cause classifier evasion rates exceeding 80\%, often appearing as high-confidence benign classifications.
+
+\textbf{Limitations:} Does not formulate a capacity-constrained operational triage mechanism to allocate scarce human analyst time to evasive alerts.
+
+\textbf{Relevance to Proposed Project:} Establishes that attackers exploit model overconfidence to evade detection, directly justifying our multi-signal defense combining uncertainty, OOD distance, and drift.
+

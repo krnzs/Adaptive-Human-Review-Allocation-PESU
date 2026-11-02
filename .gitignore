@@ -1,11 +1,48 @@
+# Python & Environment
 __pycache__/
 *.pyc
+*.pyo
 .pytest_cache/
-results/*.csv
-results/*.png
-results/*.pdf
-models/*.pkl
+.venv/
+.venv*/
+venv/
+env/
+.vscode/
+
+# Large Raw and Split Flow Datasets (>10 MB)
+BigFlow_sample.csv
 data/
+mentor_ready_copy/
+demo_live/
+results/train.csv
+results/validation.csv
+results/shifted_test.csv
+results/X_train.csv
+results/X_validation.csv
+results/X_shifted_test.csv
+results/y_train.csv
+results/y_validation.csv
+results/y_shifted_test.csv
+results/*_signals*.csv
+results/four_factor_risk_signals.csv
+results/adaptive_risk_signals.csv
+results/shifted_dynamic_signals.csv
+
+# Heavy Models & Archives
+models/*.pkl
+*.zip
+01_FINAL_SUBMISSION/*.zip
+
+# Keep essential summary, metric & benchmark result CSVs for Dashboard & Verification
+!results/final_shifted_strategy_comparison.csv
+!results/final_experiment_summary.csv
+!results/drift_results.csv
+!results/model_comparison.csv
+!results/sequential_feedback.csv
+!results/extended_bootstrap_cis.csv
+!results/extended_model_metrics.csv
+!results/extended_strategy_eval.csv
+!results/split_audit.csv
+!results/historical_error_variants.csv
+!results/review_efficiency.csv
 !results/extended_evaluation.md
-!LEAKAGE_AUDIT.md
-!CHANGES_NEEDED.md

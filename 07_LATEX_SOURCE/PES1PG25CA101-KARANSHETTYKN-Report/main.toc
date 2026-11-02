@@ -1,0 +1,121 @@
+\contentsline {chapter}{\numberline {1}Abstract}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Introduction}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{2}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Literature Review}{3}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Detailed Literature Survey}{3}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Research Paper 1}{3}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Research Paper 2}{3}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Research Paper 3}{4}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Research Paper 4}{4}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Research Paper 5}{4}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Research Paper 6}{5}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Research Paper 7}{5}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Research Paper 8}{5}{section.3.9}%
+\contentsline {section}{\numberline {3.10}Research Paper 9}{6}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Research Paper 10}{6}{section.3.11}%
+\contentsline {section}{\numberline {3.12}Literature Gap and Research Motivation}{6}{section.3.12}%
+\contentsline {chapter}{\numberline {4}Background}{8}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Machine Learning Under Distribution Shift}{8}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Human Review and Selective Prediction}{8}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Review Capacity as a Resource Constraint}{8}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Prediction Confidence}{8}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Out-of-Distribution Detection}{9}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Distribution Drift}{9}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Historical Model Errors}{9}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Multi-Factor Reliability Assessment}{9}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Relevance to the Proposed Study}{9}{section.4.9}%
+\contentsline {chapter}{\numberline {5}Comparative Study}{11}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Overview}{11}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Allocation Strategies}{11}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Random Allocation}{11}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Confidence-Only Allocation}{11}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}OOD-Only Allocation}{11}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Static Multi-Factor Allocation}{11}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.5}Adaptive Multi-Factor Allocation}{11}{subsection.5.2.5}%
+\contentsline {section}{\numberline {5.3}Comparison Criteria}{12}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Evaluation Measures}{12}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Comparison of Adaptive and Confidence Strategies}{12}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Interpretation of the Single-Signal Strategies}{13}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Comparison Under Distribution Shift}{13}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Summary of Comparative Findings}{13}{section.5.8}%
+\contentsline {chapter}{\numberline {6}Requirements}{14}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Overview}{14}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Functional Requirements}{14}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Non-Functional Requirements}{15}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Reproducibility}{15}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Data Leakage Control}{15}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Modularity}{15}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.4}Interpretability}{15}{subsection.6.3.4}%
+\contentsline {subsection}{\numberline {6.3.5}Capacity Enforcement}{15}{subsection.6.3.5}%
+\contentsline {subsection}{\numberline {6.3.6}Scalability}{15}{subsection.6.3.6}%
+\contentsline {subsection}{\numberline {6.3.7}Maintainability}{15}{subsection.6.3.7}%
+\contentsline {subsection}{\numberline {6.3.8}Demonstrability}{15}{subsection.6.3.8}%
+\contentsline {section}{\numberline {6.4}Hardware and Software Requirements}{15}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Software Requirements}{15}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Hardware Requirements}{16}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Scope Boundary}{16}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Implementation Status}{16}{section.6.6}%
+\contentsline {chapter}{\numberline {7}Methodology}{17}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Research Methodology}{17}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Dataset and Experimental Partitioning}{17}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Data Preprocessing}{17}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Baseline Machine Learning Model}{18}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Reliability Signal Extraction}{18}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Prediction Confidence}{18}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Mahalanobis Out-of-Distribution Signal}{18}{subsection.7.5.2}%
+\contentsline {subsection}{\numberline {7.5.3}Population Stability Index and Drift Risk}{18}{subsection.7.5.3}%
+\contentsline {subsection}{\numberline {7.5.4}Historical Error Risk}{18}{subsection.7.5.4}%
+\contentsline {section}{\numberline {7.6}Composite Risk Score}{19}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Human-Review Allocation}{19}{section.7.7}%
+\contentsline {section}{\numberline {7.8}Review-Allocation Strategies}{19}{section.7.8}%
+\contentsline {section}{\numberline {7.9}Simulated Review Oracle}{19}{section.7.9}%
+\contentsline {section}{\numberline {7.10}Evaluation Metrics}{20}{section.7.10}%
+\contentsline {section}{\numberline {7.11}Reproducibility and Leakage Control}{20}{section.7.11}%
+\contentsline {section}{\numberline {7.12}Workflow Boundary}{20}{section.7.12}%
+\contentsline {subsection}{\numberline {7.12.1}Offline Benchmarking}{20}{subsection.7.12.1}%
+\contentsline {subsection}{\numberline {7.12.2}Simulated Reviewer Feedback}{20}{subsection.7.12.2}%
+\contentsline {subsection}{\numberline {7.12.3}Future Operational Workflow}{21}{subsection.7.12.3}%
+\contentsline {section}{\numberline {7.13}PSI-to-Instance-Level Drift Conversion}{21}{section.7.13}%
+\contentsline {section}{\numberline {7.14}Algorithmic Execution}{21}{section.7.14}%
+\contentsline {chapter}{\numberline {8}Data Design}{22}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Dataset Overview}{22}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Data Partitioning}{22}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Feature Representation}{22}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Target Representation}{22}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Data Preprocessing Design}{22}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Data Leakage Prevention}{23}{section.8.6}%
+\contentsline {section}{\numberline {8.7}Distribution Shift Design}{23}{section.8.7}%
+\contentsline {section}{\numberline {8.8}Experimental Data Flow}{23}{section.8.8}%
+\contentsline {chapter}{\numberline {9}Implementation}{24}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Implementation Overview}{24}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Software Environment}{24}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Implementation Pipeline}{24}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Model Training}{25}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Reliability Signal Implementation}{25}{section.9.5}%
+\contentsline {subsection}{\numberline {9.5.1}Confidence Risk}{25}{subsection.9.5.1}%
+\contentsline {subsection}{\numberline {9.5.2}Out-of-Distribution Risk}{25}{subsection.9.5.2}%
+\contentsline {subsection}{\numberline {9.5.3}Distribution-Drift Risk}{25}{subsection.9.5.3}%
+\contentsline {subsection}{\numberline {9.5.4}Historical-Error Risk}{25}{subsection.9.5.4}%
+\contentsline {section}{\numberline {9.6}Adaptive Risk Score}{25}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Review Allocation}{26}{section.9.7}%
+\contentsline {section}{\numberline {9.8}Baseline Allocation Strategies}{26}{section.9.8}%
+\contentsline {section}{\numberline {9.9}Evaluation Implementation}{26}{section.9.9}%
+\contentsline {section}{\numberline {9.10}Simulated Review and Feedback}{26}{section.9.10}%
+\contentsline {section}{\numberline {9.11}Result Generation and Dashboard}{27}{section.9.11}%
+\contentsline {section}{\numberline {9.12}Implementation Summary}{27}{section.9.12}%
+\contentsline {chapter}{\numberline {10}Results and Evaluation}{28}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Evaluation Setup}{28}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Error Capture Results}{28}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Class-Specific Error Capture}{29}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Ablation Study}{29}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Extended Model Metrics}{29}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Interpretation}{30}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Limitations of the Current Evaluation}{30}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Reproducibility}{30}{section.10.8}%
+\contentsline {chapter}{\numberline {11}Conclusion}{31}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Conclusion}{31}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Key Findings}{31}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Research Contribution}{31}{section.11.3}%
+\contentsline {section}{\numberline {11.4}Practical Significance}{31}{section.11.4}%
+\contentsline {section}{\numberline {11.5}Future Work}{32}{section.11.5}%
+\contentsline {section}{\numberline {11.6}Final Statement}{32}{section.11.6}%

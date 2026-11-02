@@ -1,0 +1,35 @@
+\chapter{Comparative Study}
+
+\section{Comparative Study of Existing Applications / Systems}
+
+To contextualize the proposed framework against current industry and research paradigms, Table 6.1 provides a structured comparative analysis across key functional dimensions.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.14\textwidth} p{0.16\textwidth} p{0.14\textwidth} p{0.18\textwidth} p{0.28\textwidth}}
+\toprule
+\textbf{System / Application} & \textbf{Major Features} & \textbf{Technology / Approach} & \textbf{Limitations} & \textbf{Proposed Project Difference} \\
+\midrule
+Pure Confidence-Based Selective Classification (Geifman \& El-Yaniv, 2017) & Ranks inferences by maximum softmax probability max(P(y|x)); abstains when confidence falls below threshold. & Softmax Response (SR), SelectiveNet risk-coverage optimization. & Vulnerable to uncalibrated overconfidence under distribution shift; high-confidence errors completely bypass triage. & Combines confidence with geometric OOD distance, macroscopic drift, and historical mistake patterns to catch confident errors. \\
+Out-of-Distribution Filtering Systems (Yang et al., 2024) & Detects semantic and covariate novelty in representation space to reject unfamiliar inputs. & Regularized Mahalanobis distance, Energy-based scores, Maximum Softmax Probability. & Novelty does not correlate with classification errors; flags benign novel traffic, yielding near-zero error capture (0.03\% in experiments). & Treats OOD distance as a secondary modulation factor rather than a sole filter, pairing it with historical mistake likelihood. \\
+Traditional Learning-to-Defer Systems (Mozannar \& Sontag, 2020) & Jointly trains classifier and triage policy to delegate hard instances to human expert. & Bayes-consistent surrogate loss functions, (K+1)-class classification. & Optimizes theoretical cost trade-offs; lacks mechanisms to enforce hard capacity budgets (e.g., strictly 1\% or 2\% quota). & Enforces hard capacity budget slicing via top-K ranking, ensuring zero budget overruns in high-throughput streams. \\
+Data Drift Monitoring Platforms (e.g., Evidently AI, Great Expectations) & Calculates dataset-level drift statistics across batches of production data. & Population Stability Index (PSI), Wasserstein Distance, Kolmogorov-Smirnov test. & Operates as a post-hoc monitoring tool; provides batch-level aggregate metrics but cannot score individual inferences. & Projects batch-level PSI drift into per-instance vulnerability scores to directly modulate review priority queues. \\
+Active Learning NIDS (Kim et al., 2024) & Queries human analysts for labels on uncertain traffic flows to retrain detection models. & Uncertainty sampling combined with clustering density. & Requires continuous retraining loops; focuses on training data acquisition rather than operational safety filtering. & Functions as a post-hoc operational safety wrapper around frozen, deployed models without requiring continuous retraining. \\
+\bottomrule
+\end{tabular}
+\caption{Comparative Study of Existing Applications / Systems}
+\end{table}
+
+\section{Proposed Contribution / Distinguishing Features}
+
+\textbf{Summary of Contributions:} The proposed research provides five concrete methodological and engineering contributions to reliable machine learning under distribution shift:
+
+\begin{itemize}
+\item Multi-Signal Reliability Engine: Formulates an integrated scoring model that synthesizes four orthogonal failure indicators---prediction uncertainty, Mahalanobis OOD distance, PSI feature drift, and historical mistake neighborhoods---moving beyond single-factor confidence baselines.
+\item Operational Capacity Quotas: Formulates human-review allocation as a hard-budgeted optimization problem, evaluating performance strictly within capacity slices (1\%, 2\%, 5\%, 10\%) rather than unconstrained theoretical costs.
+\item Authentic Chronological Evaluation: Evaluates triage policies under authentic temporal distribution shift on a 500,000-flow chronological partition of BigFlow-NIDS, where the attack rate shifts 19.05-fold (0.33\% to 6.30\%) and model error rate surges 4.55x (1.004\% to 4.569\%).
+\item Empirical Crossover Discovery: Uncovers and documents a critical budget-dependent performance crossover: multi-factor allocation achieves higher error capture at tight budgets (1\%--2\%), while pure confidence ranking achieves higher error capture at broader budgets (5\%--10\%).
+\item Feedback-Adaptive Dynamic Triage: Introduces an audit feedback mechanism that monitors error density in reviewed samples, dynamically boosting historical mistake weighting when audit yield is high.
+\end{itemize}
+

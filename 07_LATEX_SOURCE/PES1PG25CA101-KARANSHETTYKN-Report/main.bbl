@@ -1,0 +1,59 @@
+\begin{thebibliography}{10}
+
+\bibitem{cao2023anomaly}
+T.~Cao, J.~Zhu, and G.~Pang, ``Anomaly detection under distribution shift,'' in
+  {\em Proceedings of the IEEE/CVF International Conference on Computer
+  Vision}, pp.~6511--6523, 2023.
+
+\bibitem{mozannar2020consistent}
+H.~Mozannar and D.~Sontag, ``Consistent estimators for learning to defer to an
+  expert,'' in {\em Proceedings of the 37th International Conference on Machine
+  Learning}, vol.~119, pp.~7076--7087, PMLR, 2020.
+
+\bibitem{wei2024exploiting}
+Z.~Wei, Y.~Cao, and L.~Feng, ``Exploiting human-ai dependence for learning to
+  defer,'' in {\em Proceedings of the 41st International Conference on Machine
+  Learning}, vol.~235, pp.~52484--52499, PMLR, 2024.
+
+\bibitem{geifman2017selective}
+Y.~Geifman and R.~El-Yaniv, ``Selective classification for deep neural
+  networks,'' in {\em Advances in Neural Information Processing Systems},
+  vol.~30, pp.~4878--4887, 2017.
+
+\bibitem{guo2017calibration}
+C.~Guo, G.~Pleiss, Y.~Sun, and K.~Q. Weinberger, ``On calibration of modern
+  neural networks,'' in {\em Proceedings of the 34th International Conference
+  on Machine Learning}, vol.~70, pp.~1321--1330, PMLR, 2017.
+
+\bibitem{kim2024human}
+Y.~Kim, G.~Dan, and Q.~Zhu, ``Human-in-the-loop cyber intrusion detection using
+  active learning,'' {\em IEEE Transactions on Information Forensics and
+  Security}, vol.~19, pp.~8658--8672, 2024.
+
+\bibitem{liu2022incorporating}
+J.~Liu, B.~Gallego, and S.~Barbieri, ``Incorporating uncertainty in learning to
+  defer for safe computer-aided diagnosis,'' {\em Scientific Reports}, vol.~12,
+  no.~1, p.~1762, 2022.
+
+\bibitem{yang2024generalized}
+J.~Yang, K.~Zhou, Y.~Li, and Z.~Liu, ``Generalized out-of-distribution
+  detection: A survey,'' {\em International Journal of Computer Vision},
+  vol.~132, no.~12, pp.~5635--5662, 2024.
+
+\bibitem{koh2021wilds}
+P.~W. Koh, S.~Sagawa, H.~Marklund, S.~Zhao, Y.~B. Alayrac, S.~X. O.~H. Li,
+  E.~Andonian, R.~Zhang, B.~Y. X. B.~S. Y., {\em et~al.}, ``Wilds: A benchmark
+  of in-the-wild distribution shifts,'' in {\em Proceedings of the 38th
+  International Conference on Machine Learning}, vol.~139, pp.~5637--5664,
+  PMLR, 2021.
+
+\bibitem{he2023adversarial}
+K.~He, D.~D. Kim, and M.~R. Asghar, ``Adversarial machine learning for network
+  intrusion detection systems: A comprehensive survey,'' {\em IEEE
+  Communications Surveys \& Tutorials}, vol.~25, no.~1, pp.~538--566, 2023.
+
+\bibitem{bigflow2026}
+M.~Uddin and M.~Arefin, ``Bigflow-nids: Large-scale benchmark dataset,'' {\em
+  Data in Brief}, vol.~65, p.~112530, 2026.
+
+\end{thebibliography}

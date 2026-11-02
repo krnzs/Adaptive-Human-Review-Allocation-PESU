@@ -1,0 +1,91 @@
+\documentclass[11pt,a4paper,openany]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=0.85in}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{titlesec}
+
+\setstretch{1.10}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!80!black,
+    citecolor=blue!80!black,
+    urlcolor=blue!80!black
+}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {8pt}
+  {\Huge}
+
+\titlespacing*{\chapter}{0pt}{-10pt}{15pt}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\subsection}{0pt}{9pt}{4pt}
+
+\title{
+    {\large Phase-I Review-II / Presentation-2 Report}\\
+    \vspace{1cm}
+    {\huge \textbf{Adaptive Human-Review Allocation for Reliable Machine Learning Under Distribution Shift}}\\
+}
+
+\author{
+    \textbf{Student:} Karan Shetty\\
+    \textbf{SRN:} PES1PG25CA101\\
+    \textbf{Programme:} Master of Computer Applications\\
+    \textbf{Guide:} Dilip Kumar Maripuri\\
+    \vspace{1cm}\\
+    Department of Computer Applications\\
+    PES University
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\include{chapters/abstract}
+\include{chapters/introduction}
+\include{chapters/literature_review}
+\include{chapters/background}
+\include{chapters/comparative_study}
+\include{chapters/requirements}
+\include{chapters/methodology}
+\include{chapters/system_design}
+\include{chapters/data_design}
+\include{chapters/implementation}
+\include{chapters/results}
+\include{chapters/limitations}
+\include{chapters/conclusion}
+
+\nocite{*}
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}

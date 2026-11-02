@@ -1,0 +1,5 @@
+budget,train_variant_caught,val_variant_caught,oof_variant_caught,total_errors
+0.01,637,5,31,3427
+0.02,1236,6,91,3427
+0.05,1403,6,120,3427
+0.1,2059,43,285,3427
